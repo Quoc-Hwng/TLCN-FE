@@ -1,0 +1,27 @@
+<app-topbar></app-topbar>
+<app-navbar></app-navbar>
+<div class="container">
+  <mat-drawer-container class ="nav-profile">
+    <mat-drawer mode="side" opened >
+
+        <mat-nav-list class = "name-profile">
+            <h2 matSubheader class="mt-2">{{dataService.employee?.displayName}}</h2>
+          <mat-divider></mat-divider>
+
+          <a mat-list-item routerLinkActive="list-item-active" routerLink="profile">
+            <mat-icon>person</mat-icon> User Profile
+          </a>
+          <a mat-list-item routerLinkActive="list-item-active" routerLink="history">
+            <mat-icon>person</mat-icon> Order History
+          </a>
+          <a mat-list-item routerLinkActive="list-item-active" routerLink="changPassword">
+            <mat-icon>person</mat-icon> Change Password
+          </a>
+        </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content>
+      <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container>
+  </div>
+<app-footer></app-footer>

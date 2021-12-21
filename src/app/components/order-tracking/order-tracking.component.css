@@ -1,0 +1,46 @@
+.align--center{
+  -webkit-box-align: center;
+  align-items: center;
+}
+.justify--center {
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+.flex {
+  display: flex;
+}
+/* *, :after, :before {
+  box-sizing: border-box;
+} */
+.input-tracking{
+  margin-top: 10px;
+  width: 400px;
+  border-radius: 10px;
+  margin: auto;
+}
+.modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: .75rem;
+  border-top: 1px solid #dee2e6;
+  border-bottom-right-radius: calc(.3rem - 1px);
+  border-bottom-left-radius: calc(.3rem - 1px);
+}
+.card-body{
+  align-items: center;
+  text-align: center;
+}
+.infor-guest{
+  text-align: center;
+  margin: auto;
+}
+.title-infor{
+  margin-right: 5px;
+  font-size: 1.2em;
+  font-weight: medium;
+}
+.align-middle {
+  vertical-align: middle !important;
+}

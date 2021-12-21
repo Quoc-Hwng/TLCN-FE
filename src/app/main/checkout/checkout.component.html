@@ -1,0 +1,182 @@
+<app-topbar></app-topbar>
+<app-navbar></app-navbar>
+ <!-- Breadcrumb Start -->
+ <div class="container-fluid">
+  <div class="row px-xl-5">
+      <div class="col-12">
+          <nav class="breadcrumb bg-light mb-30">
+              <a class="breadcrumb-item text-dark" href="#">Home</a>
+              <a class="breadcrumb-item text-dark" href="/cart">Order</a>
+              <span class="breadcrumb-item active">Checkout</span>
+          </nav>
+      </div>
+  </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Checkout Start -->
+<form #checkoutForm="ngForm" [formGroup]="infocheckout">
+<div class="container-fluid">
+  <div class="row px-xl-5">
+      <div class="col-lg-8">
+          <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Billing Address</span></h5>
+
+            <div class="bg-light p-30 mb-5">
+              <div *ngIf="checkout" class="m-auto">
+                <h1 class="text-center display-3 mt-5">
+                  <i class="fas fa-spinner fa spin"></i> </h1>
+              </div>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label>Name</label>
+                        <input class="form-control" type="text" name="displayName" id="displayName" formControlName="displayName" [(ngModel)]="order.displayName" placeholder="Hung">
+                        <small id="nameBrandHelp" class="form-text text-muted err" *ngIf="!infocheckout.get('displayName')?.valid && infocheckout.get('displayName')?.touched">
+                          <i class = "fa fa-times-circle" style="color: firebrick;"></i>
+                        Input FirstName Please</small>
+                        <i class = "fa fa-check-circle" style="color:green;" *ngIf="infocheckout.controls.displayName.valid"></i>
+                    </div>
+                    <!-- <div class="col-md-6 form-group">
+                        <label>Last Name</label>
+                        <input class="form-control" type="text" name="lastName" id="lastName" formControlName="lastName" [(ngModel)]="order.lastName" placeholder="Hung">
+                        <small id="nameBrandHelp" class="form-text text-muted err" *ngIf="!infocheckout.get('lastName')?.valid && infocheckout.get('lastName')?.touched">
+                          <i class = "fa fa-times-circle" style="color: firebrick;"></i>
+                        Input LastName Please</small>
+                        <i class = "fa fa-check-circle" style="color:green;" *ngIf="infocheckout.controls.lastName.valid"></i>
+                    </div> -->
+                    <div class="col-md-6 form-group">
+                        <label>E-mail</label>
+                        <input class="form-control" type="text" name="email" id="email" formControlName="email" [(ngModel)]="order.email" placeholder="example@email.com">
+                        <small id="nameBrandHelp" class="form-text text-muted err" *ngIf="!infocheckout.get('email')?.valid && infocheckout.get('email')?.touched">
+                          <i class = "fa fa-times-circle" style="color: firebrick;"></i>
+                        Input Email Please</small>
+                        <i class = "fa fa-check-circle" style="color:green;" *ngIf="infocheckout.controls.email.valid"></i>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Mobile No</label>
+                        <input class="form-control" type="text" name="phone" id="phone" formControlName="phone" [(ngModel)]="order.phone" placeholder="0123 456 789">
+                        <small id="nameBrandHelp" class="form-text text-muted err" *ngIf="!infocheckout.get('phone')?.valid && infocheckout.get('phone')?.touched">
+                          <i class = "fa fa-times-circle" style="color: firebrick;"></i>
+                        Input phone Please</small>
+                        <i class = "fa fa-check-circle" style="color:green;" *ngIf="infocheckout.controls.phone.valid"></i>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Address</label>
+                        <input class="form-control" type="text" name="address" id="address" formControlName="address" [(ngModel)]="order.address" placeholder="123 Street">
+                        <small id="nameBrandHelp" class="form-text text-muted err" *ngIf="!infocheckout.get('address')?.valid && infocheckout.get('address')?.touched">
+                          <i class = "fa fa-times-circle" style="color: firebrick;"></i>
+                        Input address Please</small>
+                        <i class = "fa fa-check-circle" style="color:green;" *ngIf="infocheckout.controls.address.valid"></i>
+                    </div>
+                     <div class="col-md-6 form-group">
+                        <label>City</label>
+                        <input class="form-control" type="text"name="province" id="province" formControlName="city" [(ngModel)]="order.city" placeholder="Thanh Pho Ho Chi Minh">
+                        <small id="nameBrandHelp" class="form-text text-muted err" *ngIf="!infocheckout.get('city')?.valid && infocheckout.get('city')?.touched">
+                          <i class = "fa fa-times-circle" style="color: firebrick;"></i>
+                        Input city Please</small>
+                        <i class = "fa fa-check-circle" style="color:green;" *ngIf="infocheckout.controls.city.valid"></i>
+                     </div>
+                     <div class="col-md-6 form-group">
+                        <label>Country</label>
+                        <input class="form-control" type="text"formControlName="country" [(ngModel)]="order.country" placeholder="Quan Thu Duc">
+                        <small id="nameBrandHelp" class="form-text text-muted err" *ngIf="!infocheckout.get('country')?.valid && infocheckout.get('country')?.touched">
+                          <i class = "fa fa-times-circle" style="color: firebrick;"></i>
+                        Input phone Please</small>
+                        <i class = "fa fa-check-circle" style="color:green;" *ngIf="infocheckout.controls.country.valid"></i>
+                    </div>
+                    <!-- <div class="col-md-12 form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="newaccount">
+                            <label class="custom-control-label" for="newaccount">Create an account</label>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-md-12">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="shipto">
+                            <label class="custom-control-label" for="shipto"  data-toggle="collapse" data-target="#shipping-address">Ship to different address</label>
+                        </div>
+                    </div> -->
+                </div>
+                </div>
+
+
+          <div class="collapse mb-5" id="shipping-address">
+              <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Shipping Address</span></h5>
+              <div class="bg-light p-30">
+                  <div class="row">
+                      <div class="col-md-6 form-group">
+                          <label>First Name</label>
+                          <input class="form-control" type="text" placeholder="John">
+                      </div>
+                      <div class="col-md-6 form-group">
+                          <label>Last Name</label>
+                          <input class="form-control" type="text" placeholder="Doe">
+                      </div>
+                      <div class="col-md-6 form-group">
+                          <label>E-mail</label>
+                          <input class="form-control" type="text" placeholder="example@email.com">
+                      </div>
+                      <div class="col-md-6 form-group">
+                          <label>Mobile No</label>
+                          <input class="form-control" type="text" placeholder="+123 456 789">
+                      </div>
+                      <div class="col-md-6 form-group">
+                          <label>Address</label>
+                          <input class="form-control" type="text" placeholder="123 Street">
+                      </div>
+                      <div class="col-md-6 form-group">
+                          <label>Province</label>
+                          <select class="custom-select">
+                              <option selected>United States</option>
+                              <option>Afghanistan</option>
+                              <option>Albania</option>
+                              <option>Algeria</option>
+                          </select>
+                      </div>
+                      <div class="col-md-6 form-group">
+                          <label>District</label>
+                          <input class="form-control" type="text" placeholder="New York">
+                      </div>
+                      <div class="col-md-6 form-group">
+                          <label>Town</label>
+                          <input class="form-control" type="text" placeholder="New York">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-4">
+          <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Order Total</span></h5>
+          <div class="bg-light p-30 mb-5">
+              <div class="border-bottom">
+                  <h6 class="mb-3">Products</h6>
+                  <div class="d-flex justify-content-between" *ngFor = "let item of items">
+                      <p>{{item.product.productName}}</p>
+                      <p>{{item.total | number: '2.'}} Vnđ</p>
+                  </div>
+              </div>
+              <div class="border-bottom pt-3 pb-2">
+                  <div class="d-flex justify-content-between mb-3">
+                      <h6>Subtotal</h6>
+                      <h6>{{grandTotal}}</h6>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                      <h6 class="font-weight-medium">Shipping</h6>
+                      <h6 class="font-weight-medium">{{core| number: '2.'}} Vnđ</h6>
+                  </div>
+              </div>
+              <div class="pt-2">
+                  <div class="d-flex justify-content-between mt-2">
+                      <h5>Total</h5>
+                      <h5>{{Total| number: '2.'}} Vnđ</h5>
+                  </div>
+              </div>
+              <div *ngIf="items.length !== 0" >
+                <button class="btn btn-block btn-primary font-weight-bold py-3" [disabled]="! infocheckout.valid" (click)="checkOut()">Place Order</button>
+                <button class="btn btn-block btn-primary font-weight-bold my-3 py-3" [disabled]="! infocheckout.valid" (click) ="payPal()">Paypal</button>
+                </div>
+          </div>
+      </div>
+  </div>
+</div>
+</form>
+<!-- Checkout End -->
+<app-footer></app-footer>

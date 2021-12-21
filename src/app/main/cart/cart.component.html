@@ -1,0 +1,87 @@
+<app-topbar></app-topbar>
+<app-navbar></app-navbar>
+<!-- Breadcrumb Start -->
+<div class="container-fluid">
+  <div class="row px-xl-5">
+      <div class="col-12">
+          <nav class="breadcrumb bg-light mb-30">
+              <a class="breadcrumb-item text-dark" href="#">Home</a>
+              <a class="breadcrumb-item text-dark" href="#">Shop</a>
+              <span class="breadcrumb-item active">Shopping Cart</span>
+          </nav>
+      </div>
+  </div>
+</div>
+<!-- Breadcrumb End -->
+
+<div *ngIf="items !== null && items.length !== 0">
+<!-- Cart Start -->
+<div class="container-fluid">
+  <div class="row px-xl-5">
+      <div class="col-lg-8 table-responsive mb-5">
+          <table class="table table-light table-borderless table-hover text-center mb-0">
+              <thead class="thead-dark">
+                  <tr>
+                      <th>Products</th>
+                      <th>Price</th>
+                      <th>Quantity</th>
+                      <th>Total</th>
+                      <th>Remove</th>
+                  </tr>
+              </thead>
+              <tbody class="align-middle">
+                  <tr *ngFor="let item of items">
+                      <td style="text-align: left;margin-left: 10px;"><img src="{{item.product.productImg1}}" alt="" style="width: 50px;"> {{item.product.productName}}</td>
+                      <td class="align-middle">{{item.product.priceSale | number: '2.'}}</td>
+                      <td class="align-middle">
+                          <div class="input-group quantity mx-auto" style="width: 100px;">
+                              <div class="input-group-btn">
+                                  <button class="btn btn-sm btn-primary btn-minus" (click)="subQuantity(item)">
+                                  <i class="fa fa-minus"></i>
+                                  </button>
+                              </div>
+                              <input type="number" class="form-control form-control-sm bg-secondary border-0 text-center" [(ngModel)]="item.quantity" name="quantity" ngDefaultControl (input) = "changeQuantity(item)">
+                              <div class="input-group-btn">
+                                  <button class="btn btn-sm btn-primary btn-plus" (click)="addQuantity(item)">
+                                      <i class="fa fa-plus"></i>
+                                  </button>
+                              </div>
+                          </div>
+                      </td>
+                      <td class="align-middle" [(ngModel)]="item.total" name="total" ngDefaultControl>{{item.total | number: '2.'}}</td>
+                      <td class="align-middle"><button class="btn btn-sm btn-danger" (click) = "removeItem(item)"><i class="fa fa-times"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button (click)="clearCart()">Clear</button>
+          </div>
+          <div class="col-lg-4">
+              <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Cart Summary</span></h5>
+              <div class="bg-light p-30 mb-5">
+                  <div class="pt-2">
+                      <div class="d-flex justify-content-between mt-2">
+                          <h5>Total</h5>
+                          <h5>{{grandTotal | number: '2.'}}</h5>
+                      </div>
+
+                      <button class="btn btn-block btn-primary font-weight-bold my-3 py-3" routerLink = "/checkout" >Proceed To Checkout</button>
+
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Cart End -->
+</div>
+<ng-container *ngIf=" items.length === 0 && items !== null">
+  <div class="container">
+    <div class = "center-cart-empty">
+      <img src = "https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90">
+      <h4>Không có sản phẩm nào</h4>
+      <h6>Thêm sản phẩm vào giỏ hàng</h6>
+      <button class="btn btn-primary" routerLink="/homes">Thêm sản phẩm</button>
+    </div>
+  </div>
+
+</ng-container>
+  <app-footer></app-footer>

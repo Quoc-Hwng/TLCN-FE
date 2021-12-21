@@ -1,0 +1,51 @@
+<app-topbar></app-topbar>
+<app-navbar></app-navbar>
+<ngb-carousel *ngIf="images">
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img [src]="images[0]" alt="Random first slide">
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img [src]="images[1]" alt="Random second slide">
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img [src]="images[2]" alt="Random third slide">
+    </div>
+  </ng-template>
+</ngb-carousel>
+<div class ="body-home">
+<p-carousel [value]="products" [numVisible]="4" [numScroll]="4" [circular]="false" [showIndicators]="false" >
+  <ng-template pTemplate="header">
+    <span class="title-product-home">FASH DEAL</span>
+  </ng-template>
+  <ng-template let-product pTemplate="item">
+      <app-product-display [product]="product"></app-product-display>
+  </ng-template>
+</p-carousel>
+<p-carousel [value]="product" [numVisible]="4" [numScroll]="4" [circular]="false" [showIndicators]="false" >
+  <ng-template pTemplate="header">
+    <span class="title-product-home">NEW ARRIVALS</span>
+  </ng-template>
+  <ng-template let-products pTemplate="item">
+      <app-product-display [product]="products"></app-product-display>
+  </ng-template>
+</p-carousel>
+<div>
+  <span class="title-product-home">SALE</span>
+<div class="row">
+<div class="panel-product-sale col-3">
+  <img src="https://bizweb.dktcdn.net/100/424/874/themes/817899/assets/collection_2_banner.jpg?1634203525795">
+</div>
+<div class="product-sale col">
+<div *ngFor="let item of products" class="col-lg-4 col-md-6 col-sm-6 pb-1">
+  <app-product-display [product] = "item"></app-product-display>
+</div>
+</div>
+</div>
+</div>
+</div>
+<app-footer></app-footer>

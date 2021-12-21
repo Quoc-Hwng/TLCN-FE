@@ -1,0 +1,33 @@
+{
+  "products":[
+    {
+      "ID_Product": "S01",
+      "productName": "Fizh",
+      "productImg": "https://assets.adidas.com/images/w_600,f_auto,q_auto/7ed0855435194229a525aad6009a0497_9366/Giay_Superstar_trang_EG4958_01_standard.jpg",
+      "productImgS": [
+        {"productImg" : "https://assets.adidas.com/images/w_600,f_auto,q_auto/7ed0855435194229a525aad6009a0497_9366/Giay_Superstar_trang_EG4958_01_standard.jpg"},{"productImg": "https://assets.adidas.com/images/w_600,f_auto,q_auto/7ed0855435194229a525aad6009a0497_9366/Giay_Superstar_trang_EG4958_01_standard.jpg"},{"productImg": "https://assets.adidas.com/images/w_600,f_auto,q_auto/7ed0855435194229a525aad6009a0497_9366/Giay_Superstar_trang_EG4958_01_standard.jpg"}],
+      "Size": 40,
+      "Color": "#FFFFFF",
+      "Quantity": 10,
+      "Sex": "Female",
+      "Price": 700000,
+      "Description": "GoodJob",
+      "Brand": "Nike"
+    },
+    {
+      "ID_Product": "S02",
+      "productName": "Whale",
+      "productImg": "https://assets.adidas.com/images/w_600,f_auto,q_auto/7ed0855435194229a525aad6009a0497_9366/Giay_Superstar_trang_EG4958_01_standard.jpg",
+      "productImgS": [
+        {"productImg": "https://assets.adidas.com/images/w_600,f_auto,q_auto/7ed0855435194229a525aad6009a0497_9366/Giay_Superstar_trang_EG4958_01_standard.jpg"},{"productImg" : "https://assets.adidas.com/images/w_600,f_auto,q_auto/7ed0855435194229a525aad6009a0497_9366/Giay_Superstar_trang_EG4958_01_standard.jpg"},{"productImg": "https://assets.adidas.com/images/w_600,f_auto,q_auto/7ed0855435194229a525aad6009a0497_9366/Giay_Superstar_trang_EG4958_01_standard.jpg"}],
+      "Size": 40,
+      "Color": "#FFFFFF",
+      "Quantity": 10,
+      "Sex": "Male",
+      "Price": 700000,
+      "Description": "GoodJob",
+      "Brand": "Adidas"
+    }
+
+  ]
+}

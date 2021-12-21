@@ -1,0 +1,72 @@
+<app-topbar></app-topbar>
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="flex justify--center align--center" style="height: 100%; margin-top: 20px;">
+    <div class="modal-content otp-address-modal">
+      <div class="modal-content-inner">
+        <div class="text-center">
+          Vui lòng nhập mã đơn hàng
+        </div>
+        <div class="mgt--10" style="margin-top: 10px">
+          <input type="text" name="Id" class="form-control input-tracking" [(ngModel)]="Id" style="text-align: center;">
+        </div>
+      </div>
+      <div class="modal-footer mgt--30">
+        <button type="submit" (click)=" ViewBill(Id)" class="btn btn-primary" id="otp-type-submit">
+            Xem đơn hàng
+        </button>
+    </div>
+    </div>
+  </div>
+  <div class="bill-infor">
+    <div *ngIf = "messageError">{{messageError}}</div>
+    <div *ngIf = "order">
+      <div class="address-order">
+        <h3>THÔNG TIN ĐƠN HÀNG</h3>
+      </div>
+      <div> Trạng thái:
+        <div *ngIf="order?.state === 'unconfirmed'"> Chưa xác nhận </div>
+        <div *ngIf="order?.state === 'confirmed'"> Xác nhận </div>
+        <div *ngIf="order?.state === 'No'"> Đã hủy </div>
+      </div>
+      <div class="card-body align-middle">
+        <div class="row align-middle">
+          <div class="col">
+            <div class = "row"><div class="title-infor">Thông tin đơn hàng : </div> {{order.id}}</div>
+            <div class = "row"><div class="title-infor">Ngày đặt hàng : </div> {{order.timeOrder}}</div>
+            <div class = "row"><div class="title-infor">Phương thức thanh toán : </div> COD </div>
+            <div class = "row"><div class="title-infor">Thời gian giao hàng dự kiến : </div> Sau 1 - 5 ngày làm việc tùy vào địa chỉ giao hàng.</div>
+          </div>
+          <div class="col">
+            <div class = "row"><div class="title-infor">Họ tên : </div> {{order.displayName}}</div>
+            <div class = "row"><div class="title-infor">Số điện thoại nhận hàng : </div> {{order.phone}}</div>
+            <div class = "row"><div class="title-infor">Địa chỉ: </div> {{order.address}}</div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-primary">
+              <th>Tên sản phẩm</th>
+              <th>Giá</th>
+              <th>SL</th>
+              <th>Tạm tính</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let pro of order.products">
+                <td class="align-middle"><img src="{{pro.image}}" alt="" style="width: 50px;">{{pro.name}}</td>
+                <td class="text-primary align-middle">{{pro.price | currency : ' VND'}}</td>
+                <td class="text-primary align-middle">{{pro.quantity}}</td>
+                <td class="text-primary align-middle">{{pro.totalP | currency : ' VND'}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>Tiền cần thanh toán: {{order.total | number: '2.'}}</h2>
+        </div>
+        <div *ngIf="order?.state === 'unconfirmed'">
+        <button class="btn btn-primary pull-right" (click)="update()">Hủy đơn hàng</button>
+       </div>
+    </div>
+  </div>
+</div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6 login-section-wrapper">
+      <a href="" class="text-decoration-none">
+        <div class="brand-wrapper">
+          <img src="assets/images/logo.PNG" alt="logo" class="logo" />
+        </div></a>
+      <div class="login-wrapper my-auto">
+        <h1 class="login-title">Register</h1>
+        <div>
+
+          <form action="" [formGroup]="RequestResetForm" (ngSubmit)="RequestResetUser(RequestResetForm)">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input _ngcontent-c0="" class="form-control form-control-lg" placeholder="email" type="text" id="email"
+                formControlName="email" />
+              <span *ngIf="!RequestResetForm.get('email') && !IsvalidForm" class="help-block">Please enter a valid
+                email!</span>
+            </div>
+            <div class="form-group">
+              <div>
+                <input name="login" id="login" class="btn btn-block login-btn" type="submit" value="Register" />
+              </div>
+            </div>
+          </form>
+          <div id="errorMsg" *ngIf="errorMessage">
+            <span style="color: red;">{{errorMessage}}</span>
+          </div>
+          <div id="successMsg" *ngIf="successMessage">
+            <span style="color: aqua;">{{successMessage}}</span>
+          </div>
+          <p class="row">Do u have an account?
+            <a routerLink ="/login" class="text-reset">Sign Up</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 px-0 d-none d-sm-block">
+      <img src="assets/images/login.jpg" alt="login image" class="login-img" />
+    </div>
+  </div>
+</div>

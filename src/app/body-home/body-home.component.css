@@ -1,0 +1,131 @@
+/* .carousel-slideshow{
+  margin:0;
+  padding:0;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background: #23E3C9;
+}
+.slider{
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+}
+.slides{
+  width: 500%;
+  height: 500px;
+  display: flex;
+}
+.slides input{
+  display: none;
+}
+.slide{
+  width: 100%;
+  transition: 2s;
+}
+.slide img{
+  width: 100%;
+  height:500px;
+}
+.navigation-manual{
+  position: absolute;
+  width: 800px;
+  margin-top: -40px;
+  display: flex;
+  justify-content: center;
+}
+.manual-btn{
+  border: 2px solid #40D3DC;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition:1s;
+}
+.manual-btn:not(:last-child){
+  margin-right: 40px;
+}
+.manual-btn:hover{
+  background:#40D3DC;
+}
+#radio1:checked ~ .first{
+  margin-left: 0;
+}
+#radio2:checked ~ .first{
+  margin-left: -20%;
+}
+#radio3:checked ~ .first{
+  margin-left: -40%;
+}
+#radio4:checked ~ .first{
+  margin-left: -60%;
+}
+.navigation-auto{
+  position: absolute;
+  display: flex;
+  width: 800px;
+  justify-content: center;
+  margin-top: 460px;
+}
+.navigation-auto div{
+  border: 2px solid #40D3DC;
+  padding: 5px;
+  border-radius: 10px;
+  transition: 1s;
+}
+.navigation-auto div:not(:last-child){
+  margin-right: 40px;
+}
+#radio1:checked~ .navigation-auto .auto-btn1{
+  background: #40D3DC;
+}
+#radio2:checked~ .navigation-auto .auto-btn2{
+  background: #40D3DC;
+}
+#radio3:checked~ .navigation-auto .auto-btn3{
+  background: #40D3DC;
+}
+#radio4:checked~ .navigation-auto .auto-btn4{
+  background: #40D3DC;
+} */
+.list-product{
+  margin: 10px;
+  padding:20px 50px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.product-item .product-item-content {
+  border: 1px solid var(--surface-d);
+  border-radius: 3px;
+  margin: 0.3rem;
+  text-align: center;
+  padding: 2rem 0;
+}
+.product-item .product-image {
+  width: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.body-home{
+  width: 80%;
+  margin: auto;
+
+}
+.product-sale{
+  display: flex;
+  flex-direction: row;
+  max-width: 1600px;
+  flex-wrap: wrap;
+}
+.product-ngsale{
+  padding:0 10px;
+}
+.product-sale-all{
+  display: flex;
+  flex-direction: row;
+}
+.title-product-home{
+  font-size: 2em;
+  line-height: 2.5em;
+  font-weight: bold;
+}
+
