@@ -172,6 +172,7 @@
               <div *ngIf="items.length !== 0" >
                 <button class="btn btn-block btn-primary font-weight-bold py-3" [disabled]="! infocheckout.valid" (click)="checkOut()">Place Order</button>
                 <button class="btn btn-block btn-primary font-weight-bold my-3 py-3" [disabled]="! infocheckout.valid" (click) ="payPal()">Paypal</button>
+                <ngx-paypal [config]="payPalConfig"></ngx-paypal>
                 </div>
           </div>
       </div>

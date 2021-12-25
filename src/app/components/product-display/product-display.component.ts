@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input ,TemplateRef} from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -13,8 +13,8 @@ export class ProductDisplayComponent implements OnInit {
     config.backdrop = 'static';
     config.keyboard = false;
   }
-  open(content:any) {
-    this.modalService.open(content);
+  open(content: TemplateRef<any>) {
+    this.modalService.open(content, {ariaDescribedBy: 'modal-basic-title', size: "1000px" });
   }
 
   ngOnInit(): void {
@@ -24,7 +24,9 @@ export class ProductDisplayComponent implements OnInit {
   showModalDialog() {
     this.displayModal = true;
 }
-
+finishAndAlert( message: any){
+  this.ngOnInit();
+}
 
 }
 

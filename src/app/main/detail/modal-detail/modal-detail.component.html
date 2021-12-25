@@ -1,0 +1,87 @@
+<!-- <ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header" style="width: 1000px; background-color: rgb(131, 193, 247);">
+    <h4 class="modal-title">Sản phẩm đã được thêm vào giỏ hàng</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+  </div>
+  <div class="modal-body" style="width: 1000px; background-color: white;"> -->
+    <!-- Shop Detail Start -->
+<div class="container-fluid pb-5" *ngIf="Prod">
+  <div class="row px-xl-5">
+    <div class="col-lg-5 mb-30">
+      <div id="product-carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner bg-light">
+          <div class="carousel-item active">
+            <img class="w-100 h-100" src="{{Prod.productImg1}}" alt="Image">
+          </div>
+          <div class="carousel-item">
+            <img class="w-100 h-100" src="{{Prod.productImg2}}" alt="Image">
+          </div>
+          <div class="carousel-item">
+            <img class="w-100 h-100" src="{{Prod.productImg3}}" alt="Image">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
+          <i class="fa fa-2x fa-angle-left text-dark"></i>
+        </a>
+        <a class="carousel-control-next" href="#product-carousel" data-slide="next">
+          <i class="fa fa-2x fa-angle-right text-dark"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-7 h-auto mb-30">
+      <div class="h-100 bg-light p-30">
+        <h3>{{Prod.productName}}</h3>
+        <div class="d-flex mb-3">
+          <div class="text-primary mr-2">
+            <small class="fas fa-star"></small>
+            <small class="fas fa-star"></small>
+            <small class="fas fa-star"></small>
+            <small class="fas fa-star"></small>
+            <small class="far fa-star"></small>
+          </div>
+          <small class="pt-1">(0 Reviews)</small>
+        </div>
+        <div *ngIf="Prod.price !== Prod.priceSale"class="d-flex  mt-2">
+        <h3 class="font-weight-semi-bold mb-4">{{Prod.priceSale | number: '2.'}}</h3><h4 class="text-muted ml-2"><del>{{Prod.price  | number: '2.'}}</del></h4>
+      </div>
+      <div *ngIf="Prod.price === Prod.priceSale">
+        <h3 class="font-weight-semi-bold mb-4">{{Prod.priceSale | number: '2.'}}</h3>
+       </div>
+        <p class="mb-4">Code: {{Prod.productCode}}</p>
+        <p class="mb-4">Decription: {{Prod.description}}</p>
+        <div class="d-flex mb-3">
+          <strong class="text-dark mr-3">Sizes: {{Prod.size}}</strong>
+        </div>
+        <div class="d-flex mb-4">
+          <strong class="text-dark mr-3">Colors: {{Prod.colour}}</strong>
+        </div>
+        <div class="d-flex align-items-center mb-4 pt-2">
+          <div class="input-group quantity mr-3" style="width: 130px;">
+            <div class="input-group-btn">
+              <button class="btn btn-primary btn-minus" (click)="Load(quantitys-1)">
+                <i class="fa fa-minus"></i>
+              </button>
+            </div>
+            <input type="text" class="form-control bg-secondary border-0 text-center" [(ngModel)]="quantitys">
+            <div class="input-group-btn">
+              <button class="btn btn-primary btn-plus" (click)="Load(quantitys+1)">
+                <i class="fa fa-plus"></i>
+              </button>
+            </div>
+          </div>
+          <button class="btn btn-primary px-3" (click)="addtocart(Prod,quantity)"><i class="fa fa-shopping-cart mr-1"></i> Add To
+            Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Shop Detail End -->
+  <!-- </div>
+  <div class="modal-footer" style="width: 1000px; background-color: aliceblue;">
+    <button type="button" class="btn btn-secondary pri" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template> -->

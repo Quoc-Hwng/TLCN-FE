@@ -1,72 +1,85 @@
-
-  <div class=" wrapper">
-      <div class="card card-4">
-          <div class="card-body">
-              <h2 class="title">Cập nhật thông tin</h2>
-              <form method="POST">
-                  <div class="row row-space">
-                      <div class="col-2">
-                          <div class="input-group">
-                              <label class="label">first name</label>
-                              <input class="input--style-4" type="text" name="first_name" [(ngModel)]="emloyee.firstName">
-                          </div>
-                      </div>
-                      <div class="col-2">
-                          <div class="input-group">
-                              <label class="label">last name</label>
-                              <input class="input--style-4" type="text" name="last_name"  [(ngModel)]="emloyee.lastName">
-                          </div>
-                      </div>
-                  </div>
-                  <div class="row row-space">
-                      <div class="col-2">
-                          <div class="input-group">
-                              <label class="label">Birthday</label>
-                              <div class="input-group-icon">
-                                  <input class="input--style-4 js-datepicker" type="text" name="HPBD"  [(ngModel)]="emloyee.HPBD">
-                                  <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-2">
-                        <div class="input-group">
-                            <label class="label">Email</label>
-                            <input class="input--style-4" type="email" name="email" [(ngModel)]="emloyee.email">
-                        </div>
-                    </div>
-                  </div>
-                  <div class="row row-space">
-                      <div class="col-2">
-                          <div class="input-group">
-                              <label class="label">Phone</label>
-                              <input class="input--style-4" type="text" name="phone"  [(ngModel)]="emloyee.phone">
-                          </div>
-                      </div>
-                      <div class="col-2">
-                        <div class="input-group">
-                            <label class="label">Address</label>
-                            <input class="input--style-4" type="text" name="address"  [(ngModel)]="emloyee.address">
-                        </div>
-                    </div>
-                  </div>
-                  <div class="row row-space">
-                    <div class="col-2">
-                        <div class="input-group">
-                            <label class="label">Country</label>
-                            <input class="input--style-4" type="text" name="country"  [(ngModel)]="emloyee.country">
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        <div class="input-group">
-                            <label class="label">City</label>
-                            <input class="input--style-4" type="text" name="city"  [(ngModel)]="emloyee.city">
-                        </div>
-                    </div>
-                </div>
-                  <div class="p-t-15">
-                      <button class="btn btn--radius-2 btn--blue" (click)="update()">Cập nhật</button>
-                  </div>
-              </form>
+<div class=" wrapper">
+  <div class="card card-4">
+    <div class="card-body">
+      <h2 class="title">Cập nhật thông tin</h2>
+      <form method="POST">
+        <div class="row row-space">
+          <div class="col-2">
+            <div class="input-group">
+              <label class="label">first name</label>
+              <div class="input-group-icon">
+                <input class="input--style-4" type="text" name="first_name" [(ngModel)]="emloyee.firstName">
+              </div>
+            </div>
           </div>
-      </div>
+          <div class="col-2">
+            <div class="input-group">
+              <label class="label">last name</label>
+              <div class="input-group-icon">
+                <input class="input--style-4 js-datepicker" type="text" name="last_name" [(ngModel)]="emloyee.lastName">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row row-space">
+          <div class="col-2">
+            <div class="input-group">
+              <label class="label">Birthday</label>
+              <div class="input-group-icon">
+                <input class="input--style-4 js-datepicker" type="text" name="HPBD" [(ngModel)]="emloyee.HPBD">
+                <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="input-group">
+              <label class="label">Email</label>
+              <div class="input-group-icon">
+                <input class="input--style-4" type="email" name="email" [(ngModel)]="emloyee.email">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row row-space">
+          <div class="col-2">
+            <div class="input-group">
+              <label class="label">Phone</label>
+              <div class="input-group-icon">
+                <input class="input--style-4" type="text" name="phone" [(ngModel)]="emloyee.phone">
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="input-group">
+              <label class="label">Address</label>
+              <div class="input-group-icon">
+                <input class="input--style-4" type="text" name="address" [(ngModel)]="emloyee.address">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row row-space">
+          <div class="col-2">
+            <div class="input-group">
+              <label class="label">Country</label>
+              <div class="input-group-icon">
+                <input class="input--style-4" type="text" name="country" [(ngModel)]="emloyee.country">
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="input-group">
+              <label class="label">City</label>
+              <div class="input-group-icon">
+                <input class="input--style-4" type="text" name="city" [(ngModel)]="emloyee.city">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-t-15">
+          <button class="btn btn--radius-2 btn--blue" (click)="update()">Cập nhật</button>
+        </div>
+      </form>
+    </div>
   </div>
+</div>

@@ -18,6 +18,12 @@ get(link:string){
     return this.http.get(link +'/', {headers: headers}).toPromise();
   return this.http.get(link +'/').toPromise();
 }
+getF(link:string){
+  let headers = this.getHeaders();
+  if(headers instanceof HttpHeaders)
+    return this.http.get(link, {headers: headers}).toPromise();
+  return this.http.get(link).toPromise();
+}
 search(link: string,option?:{status?: string, gender?: string, selling?:string,color?: string,price1?: number,price2?:number,size?:number, brand?:string,sort?:string}){
   let headers= this.getHeaders();
   let param = new HttpParams();

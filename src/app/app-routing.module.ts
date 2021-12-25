@@ -19,7 +19,6 @@ import { ResetPasswordComponent } from './components/forgot-password/reset-passw
 import { AboutComponent } from './main/about/about.component';
 import { RegisterEmailComponent } from './components/register/register-email/register-email.component';
 import { OrderTrackingComponent } from './components/order-tracking/order-tracking.component';
-import { PaypalSuccessComponent } from './main/checkout/paypal-success/paypal-success.component';
 
 
 const routes: Routes = [
@@ -34,7 +33,6 @@ const routes: Routes = [
   { path: 'registerEmail/:token', component: RegisterEmailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'search', component: SearchProductComponent },
-  { path: 'successPayPal', component: PaypalSuccessComponent },
   { path: 'information', component: InformationComponent, children: [
     { path: 'profile', component: ProfileComponent},
     { path: 'changPassword', component: ChangePasswordComponent},

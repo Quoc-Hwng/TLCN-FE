@@ -1,11 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, OnInit , TemplateRef} from '@angular/core';
 import { CartItem } from 'src/app/common/cart';
-import { Carts } from 'src/app/models/cart';
 import { CartService } from 'src/app/service/cart.service';
-import { DataService } from 'src/app/service/data.service';
-import { RestApiService } from 'src/app/service/rest-api.service';
-import { ToastrService } from 'ngx-toastr';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -15,17 +11,26 @@ export class CartComponent implements OnInit {
   public items :  CartItem[] = [];
   public grandTotal !: number;
   addCart = false;
+  lengthCart: number = 0;
+  confirmMessage = ''
+  deleteProduct: any;
   constructor(private cartService: CartService,
-    private rest: RestApiService,
-    private toastr: ToastrService) {
+    private modalService: NgbModal,) {
     }
   removeItem(item: CartItem){
     this.cartService.removeCartItem(item);
+    this.modalService.dismissAll();
   }
   ngOnInit() {
     this.cartService.getProducts()
     .subscribe(res=>{
       this.items = res;
+      if(this.items !== null){
+      this.lengthCart = this.items.length;}
+      if(this.items === null)
+      {
+        this.lengthCart = 0;
+      }
       this.grandTotal = this.cartService.getTotalPrice();
       console.log(this.items);
     })
@@ -63,6 +68,11 @@ export class CartComponent implements OnInit {
   }
   clearCart(){
     this.cartService.removeAllCart();
+  }
+  confirmDeleteProduct(content:  TemplateRef<any>,item:any){
+    this.modalService.open(content,{ariaDescribedBy: 'modal-basic-title'});
+    this.deleteProduct = item;
+    this.confirmMessage = `Xóa sản phẩm khỏi giỏ hàng` ;
   }
 
 }

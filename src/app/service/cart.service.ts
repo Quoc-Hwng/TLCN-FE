@@ -38,7 +38,7 @@ export class CartService {
     if(this.cartItemList.filter(item => item.product.id === product.id).length > 0)
     {
       this.cartItemList.find(item => item.product.id === product.id)!.quantity=quantity;
-      this.cartItemList.find(item => item.product.id === product.id)!.total=quantity * product.price;
+      this.cartItemList.find(item => item.product.id === product.id)!.total=quantity * product.priceSale;
     }
     else{
     this.cartItemList.push(new CartItem(product,quantity));
@@ -50,10 +50,11 @@ export class CartService {
     localStorage.setItem('myData', jsonData)
   }
   addfromDetail(product : Product, quantity: number){
+    console.log(quantity);
     if(this.cartItemList.filter(item => item.product.id === product.id).length > 0)
     {
       this.cartItemList.find(item => item.product.id === product.id)!.quantity+=quantity;
-      this.cartItemList.find(item => item.product.id === product.id)!.total+=quantity * product.price;
+      this.cartItemList.find(item => item.product.id === product.id)!.total+=quantity * product.priceSale;
     }
     else{
     this.cartItemList.push(new CartItem(product,quantity));
@@ -67,13 +68,14 @@ export class CartService {
   getTotalPrice() : number{
     let grandTotal = 0;
     this.cartItemList.map((a:any)=>{
+      console.log(a);
       grandTotal += a.total;
     })
     return grandTotal;
   }
   removeCartItem(product: any){
     this.cartItemList.map((a:any, index:any)=>{
-      if(product.id=== a.id){
+      if(product.product.productCode === a.product.productCode){
         this.cartItemList.splice(index,1);
       }
     })
@@ -85,6 +87,14 @@ export class CartService {
     this.cartItemList = []
     this.productList.next(this.cartItemList);
     localStorage.removeItem('myData');
+    var temp = JSON.parse(localStorage.getItem('myData')!);
+   if(temp === null)
+   {
+    const jsonData = JSON.stringify(this.cartItemList)
+    localStorage.setItem('myData', jsonData)
+   }else{
+    this.cartItemList = JSON.parse(localStorage.getItem('myData')!);
+   }
   }
 
 }

@@ -27,7 +27,9 @@ export class DetailComponent implements OnInit {
   addtocart(item: Product, quantity: number){
     if(quantity === null){
       quantity = 1;
-    }
+    }else{quantity = this.quantity}
+    console.log(this.quantity);
+    console.log(quantity);
     this.cartService.addfromDetail(item,quantity);
     this.toastr.success('Success', 'Your product has been added to the cart!');
   }

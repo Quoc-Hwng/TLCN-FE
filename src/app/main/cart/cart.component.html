@@ -14,7 +14,7 @@
 </div>
 <!-- Breadcrumb End -->
 
-<div *ngIf="items !== null && items.length !== 0">
+<div *ngIf="items !== null && lengthCart !== 0">
 <!-- Cart Start -->
 <div class="container-fluid">
   <div class="row px-xl-5">
@@ -35,11 +35,16 @@
                       <td class="align-middle">{{item.product.priceSale | number: '2.'}}</td>
                       <td class="align-middle">
                           <div class="input-group quantity mx-auto" style="width: 100px;">
-                              <div class="input-group-btn">
+                              <div class="input-group-btn" *ngIf="item.quantity!==1">
                                   <button class="btn btn-sm btn-primary btn-minus" (click)="subQuantity(item)">
                                   <i class="fa fa-minus"></i>
                                   </button>
                               </div>
+                              <div class="input-group-btn" *ngIf="item.quantity===1">
+                                <button class="btn btn-sm btn-primary btn-minus" (click)="confirmDeleteProduct(content,item)">
+                                <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
                               <input type="number" class="form-control form-control-sm bg-secondary border-0 text-center" [(ngModel)]="item.quantity" name="quantity" ngDefaultControl (input) = "changeQuantity(item)">
                               <div class="input-group-btn">
                                   <button class="btn btn-sm btn-primary btn-plus" (click)="addQuantity(item)">
@@ -73,7 +78,7 @@
   </div>
   <!-- Cart End -->
 </div>
-<ng-container *ngIf=" items.length === 0 && items !== null">
+<ng-container *ngIf=" lengthCart === 0 && items !== null">
   <div class="container">
     <div class = "center-cart-empty">
       <img src = "https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90">
@@ -84,4 +89,20 @@
   </div>
 
 </ng-container>
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Xóa Sản Phẩm</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+  </div>
+  <div class="modal-body">
+    <p>{{confirmMessage}}</p>
+  </div>
+  <div class="modal-footer">
+    <button class=" btn btn-sm btn-ouline-danger" (click)="removeItem(deleteProduct)">Yes</button>
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">No</button>
+  </div>
+</ng-template>
   <app-footer></app-footer>

@@ -1,3 +1,4 @@
+import { ModalDetailComponent } from './main/detail/modal-detail/modal-detail.component';
 import { MessageComponent } from './components/message/message.component';
 import { TopbarComponent } from './main/topbar/topbar.component';
 import { NgModule } from '@angular/core';
@@ -53,8 +54,7 @@ import { DetailCartComponent } from './main/information/order-history/detail-car
 import { ToastrModule } from 'ngx-toastr';
 import { RegisterEmailComponent } from './components/register/register-email/register-email.component';
 import { OrderTrackingComponent } from './components/order-tracking/order-tracking.component';
-import { PaypalSuccessComponent } from './main/checkout/paypal-success/paypal-success.component';
-
+import { NgxPayPalModule } from 'ngx-paypal';
 
 
 @NgModule({
@@ -87,8 +87,7 @@ import { PaypalSuccessComponent } from './main/checkout/paypal-success/paypal-su
     MessageComponent,
     RegisterEmailComponent,
     OrderTrackingComponent,
-    PaypalSuccessComponent,
-
+    ModalDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -112,6 +111,7 @@ import { PaypalSuccessComponent } from './main/checkout/paypal-success/paypal-su
     MatIconModule,
     MatDividerModule,
     MatListModule,
+    NgxPayPalModule,
     ToastrModule.forRoot({
     }),
   ],

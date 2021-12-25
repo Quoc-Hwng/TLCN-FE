@@ -1,12 +1,12 @@
 
 <div class="product-item bg-light mb-4">
-  <div class="product-img position-relative overflow-hidden">
+  <div class="product-img position-relative overflow-hidden" style="height: 300px;">
       <img class="img-fluid w-100" src="{{product.productImg1}}" alt="">
       <div class="product-action">
           <!-- <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
           <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
           <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a> -->
-          <a class="btn btn-outline-dark btn-square"  routerLink="/detail/{{product.id}}"><i class="fa fa-search"></i></a>
+          <a class="btn btn-outline-dark btn-square" (click)="open(content)"><i class="fa fa-search"></i></a>
       </div>
   </div>
   <div class="text-center py-4">
@@ -43,58 +43,15 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
   </div> -->
-  <div class="modal-header">
+  <div class="modal-header" style="width: 1000px; background-color: rgb(131, 193, 247);">
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <h1 class="bmd-label-floating"><a routerLink="/productDetail/{{product.id}}">{{product.productName}}</a></h1>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="form-group">
-        <img style="height: 300px; width: 450px;" src="{{product.productImg1}}">
-      </div>
-    </div>
+  <div class="modal-body" style="width: 1000px; background-color: white;">
+    <app-modal-detail [id] = "product.id"></app-modal-detail>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="bmd-label-floating">
-         Mã thương hiệu: {{product.productCode}}
-      </div>
-    </div>
-    <div class="col-md-12">
-      <div class="bmd-label-floating">
-        Thương hiệu: {{product.brand}}
-      </div>
-    </div>
-    <div class="col-md-12">
-      <div class="bmd-label-floating">
-         Size: {{product.size}}
-      </div>
-    </div>
-    <div class="col-md-12">
-      <div class="bmd-label-floating">
-         Mẫu giày: {{product.gender}}
-      </div>
-    </div>
-    <div class="col-md-12">
-      <div class="bmd-label-floating">
-        Màu: {{product.colour}}
-      </div>
-    </div>
-    <div class="col-md-12">
-      <div class="bmd-label-floating">
-         Hàng: {{product.status}}
-      </div>
-    </div>
-    <div class="col-md-12">
-      <div class="bmd-label-floating">
-        Mô tả: {{product.description}}
-      </div>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" routerLink="/productDetail/{{product.id}}" >Xem chi tiết</button>
-    <button type="button" class="btn btn-outline-dark" >Mua hàng</button>
+  <div class="modal-footer"  style="width: 1000px; background-color: aliceblue;">
+    <button type="button" class="btn btn-secondary pri" (click)="c('Close click')">Close</button>
   </div>
 </ng-template>

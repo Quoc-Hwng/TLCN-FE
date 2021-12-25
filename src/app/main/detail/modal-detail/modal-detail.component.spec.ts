@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { PaypalSuccessComponent } from './paypal-success.component';
+import { ModalDetailComponent } from './modal-detail.component';
 
-describe('PaypalSuccessComponent', () => {
-  let component: PaypalSuccessComponent;
-  let fixture: ComponentFixture<PaypalSuccessComponent>;
+describe('ModalDetailComponent', () => {
+  let component: ModalDetailComponent;
+  let fixture: ComponentFixture<ModalDetailComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PaypalSuccessComponent ]
+      declarations: [ ModalDetailComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PaypalSuccessComponent);
+    fixture = TestBed.createComponent(ModalDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
