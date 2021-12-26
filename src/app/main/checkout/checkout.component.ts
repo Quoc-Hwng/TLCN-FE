@@ -111,7 +111,7 @@ export class CheckoutComponent implements OnInit {
         this.data.error('Fail');
       });
       this.cartService.removeAllCart();
-      this.toastr.success('Success', 'cảm ơn quý khách đã mua hàng của Shop!!');
+      this.toastr.success('Success', 'Thanks for choosing our products!!');
       this.router.navigate(['/homes'])
   }
   payPal(){
@@ -154,7 +154,8 @@ export class CheckoutComponent implements OnInit {
     private initConfig(): void {
       this.orderPayPay.total = 0;
       this.orderPayPay.products = this.items.map((item:CartItem) =>{
-        this.orderPayPay.total += Math.round(item.total/this.exchangeD);
+        this.orderPayPay.total += Math.round(item.product.priceSale/this.exchangeD)*item.quantity;
+
         console.log(item.total);
         return {
           unit_amount:{
@@ -266,7 +267,7 @@ export class CheckoutComponent implements OnInit {
         this.data.error('Fail');
       });
       this.cartService.removeAllCart();
-      this.toastr.success('Success', 'cảm ơn quý khách đã mua hàng của Shop!!');
+      this.toastr.success('Success', 'Thanks for choosing our products!!');
       this.router.navigate(['/homes'])
   }
 }

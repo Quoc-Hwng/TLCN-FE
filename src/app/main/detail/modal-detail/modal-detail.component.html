@@ -8,8 +8,8 @@
   </div>
   <div class="modal-body" style="width: 1000px; background-color: white;"> -->
     <!-- Shop Detail Start -->
-<div class="container-fluid pb-5" *ngIf="Prod">
-  <div class="row px-xl-5">
+<div class="container-fluid overflow-auto" style="margin-top:auto; height: 72.5vh" *ngIf="Prod">
+  <div class="row px-xl-5" style="height: 500px">
     <div class="col-lg-5 mb-30">
       <div id="product-carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner bg-light">
@@ -32,17 +32,11 @@
       </div>
     </div>
     <div class="col-lg-7 h-auto mb-30">
-      <div class="h-100 bg-light p-30">
+      <div class="h-100 bg-light p-30" style="padding: 0;">
         <h3>{{Prod.productName}}</h3>
         <div class="d-flex mb-3">
-          <div class="text-primary mr-2">
-            <small class="fas fa-star"></small>
-            <small class="fas fa-star"></small>
-            <small class="fas fa-star"></small>
-            <small class="fas fa-star"></small>
-            <small class="far fa-star"></small>
-          </div>
-          <small class="pt-1">(0 Reviews)</small>
+          <ngb-rating [max]="5" [(rate)]="Prod.ratingsAverage" [readonly]="true"></ngb-rating>
+          <small class="pt-1">({{Prod.ratingsQuantity}} Reviews)</small>
         </div>
         <div *ngIf="Prod.price !== Prod.priceSale"class="d-flex  mt-2">
         <h3 class="font-weight-semi-bold mb-4">{{Prod.priceSale | number: '2.'}}</h3><h4 class="text-muted ml-2"><del>{{Prod.price  | number: '2.'}}</del></h4>

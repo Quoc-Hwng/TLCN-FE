@@ -57,6 +57,6 @@ export class OrderHistoryComponent implements OnInit {
           this.doing =false;
           this.data.error(error['message'])
         });
-        this.toastr.success('Đơn hàng đã hủy!');
+        this.toastr.success('Order was cancelled!');
     }
 }

@@ -19,6 +19,7 @@ import { ResetPasswordComponent } from './components/forgot-password/reset-passw
 import { AboutComponent } from './main/about/about.component';
 import { RegisterEmailComponent } from './components/register/register-email/register-email.component';
 import { OrderTrackingComponent } from './components/order-tracking/order-tracking.component';
+import { VoucherComponent } from './main/information/voucher/voucher.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
     { path: 'profile', component: ProfileComponent},
     { path: 'changPassword', component: ChangePasswordComponent},
     { path: 'history', component: OrderHistoryComponent},
+    { path: 'voucher', component: VoucherComponent},
   ]},
   { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'resetPassword/:token', component: ResetPasswordComponent },
@@ -47,7 +49,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -103,8 +103,8 @@
           <!-- Size End -->
       </div>
       <!-- Shop Sidebar End -->
-      <div class="col-lg-9 col-md-8" >
-        <div class="row pb-3 fizh">
+      <div class="col-lg-9 col-md-8 d-flex justify-content-between flex-column">
+        <div class="row pb-3 align-items-center d-flex">
           <div class="col-12 pb-1">
             <div class="d-flex align-items-center justify-content-between mb-4">
               <div>
@@ -121,13 +121,18 @@
                 </div>
               </div>
             </div>
-            <h4 *ngIf = "totalLength === 0" class="align-items-center justify-content-between" styles="margin: auto;">Không tìm thấy sản phẩm</h4>
+            <h4 *ngIf="totalLength === 0 && !loading" class="align-items-center justify-content-between" styles="margin: auto;">No product found</h4>
+          </div>
+          <div class="text-center w-100"  *ngIf="loading">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
           </div>
           <div class="col-lg-4 col-md-6 col-sm-6 pb-1"  *ngFor="let item of products | paginate: { itemsPerPage: 6, currentPage: page, totalItems: totalLength }">
-            <div *ngIf = "totalLength !== 0"><app-product-display [product] = "item"></app-product-display></div>
+            <div *ngIf="totalLength !== 0 && !loading"><app-product-display [product] = "item"></app-product-display></div>
           </div>
         </div>
         <div>
-        <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+        <pagination-controls class="text-center"  (pageChange)="page = $event"></pagination-controls>
         </div>
       </div>

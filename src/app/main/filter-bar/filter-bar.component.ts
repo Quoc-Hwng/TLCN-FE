@@ -25,6 +25,7 @@ export class FilterBarComponent implements OnInit {
   size: number;
   brand: string;
   sort: string;
+  loading: boolean = true;
   isColorChecked = false;
   rangeValues: number[] = [100000,40000000];
   message ='';
@@ -39,6 +40,8 @@ export class FilterBarComponent implements OnInit {
     private _router: Router){
     }
     navigateToPrice(){
+      this.loading = true;
+      document.documentElement.scrollTop = 0
       this._router.navigate([], {
        relativeTo: this.route,
        queryParams: {
@@ -51,23 +54,21 @@ export class FilterBarComponent implements OnInit {
      });
     }
     navigateToFoo(color:string){
-     // element.checked = true;
-      // if(this.isColorChecked){
-      //   color = '';}
+      this.loading = true;
+      document.documentElement.scrollTop = 0
       this._router.navigate([], {
        relativeTo: this.route,
        queryParams: {
          status : this.status,
          color : color,
-      //   price1: color,
-
        },
        queryParamsHandling: 'merge',
        skipLocationChange: false
      });
-   //  this.isColorChecked = !this.isColorChecked;
     }
     navigateToSize(size: string){
+      this.loading = true;
+      document.documentElement.scrollTop = 0
       this._router.navigate([], {
        relativeTo: this.route,
        queryParams: {
@@ -79,6 +80,8 @@ export class FilterBarComponent implements OnInit {
      });
     }
     navigateToSort(sort: string){
+      this.loading = true;
+      document.documentElement.scrollTop = 0
       this._router.navigate([], {
        relativeTo: this.route,
        queryParams: {
@@ -107,12 +110,13 @@ export class FilterBarComponent implements OnInit {
                                   color:this.color,selling:this.selling,
                                   price1:this.price1,price2:this.price2,
                                   size: this.size,brand: this.brand, sort: this.sort}).then((data:any)=>{
+        this.loading = false;
         this.products =data.data.data as Product[];
         this.page = 1;
         this.totalLength = data.data.data.length;
         if(this.totalLength === 0)
         {
-          this.message = "Không tìm thấy sản phẩm nào!"
+          this.message = "No products found!"
         }
       }) // price
     }

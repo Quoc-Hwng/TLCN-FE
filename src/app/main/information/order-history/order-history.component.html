@@ -15,10 +15,10 @@
                   <table class="table">
                     <thead class="text-primary">
                       <th>No</th>
-                      <th>Tên sản phẩm</th>
-                      <th>Ngày đặt hàng</th>
-                      <th>Tổng tiền</th>
-                      <th>Trạng thái</th>
+                      <th>Product Name</th>
+                      <th>Order Date</th>
+                      <th>Total Price</th>
+                      <th>State</th>
                       <th></th>
                     </thead>
                     <tbody>
@@ -31,7 +31,7 @@
                         <td>
                           <form>
                             <input name="login" id="login" style="margin-right: 5px;" type="button" *ngIf="item.state ==='unconfirmed'"
-                              (click)="update(item.id)" value="Hủy" />
+                              (click)="update(item.id)" value="Cancel" />
                               <app-detail-cart [id]="item.id"></app-detail-cart>
                           </form>
                         </td>

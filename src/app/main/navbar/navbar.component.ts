@@ -24,7 +24,11 @@ export class NavbarComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private _router: Router,
     private cartService: CartService,
-    private rest:RestApiService) { }
+    private rest:RestApiService) {
+      this._router.routeReuseStrategy.shouldReuseRoute = () => {
+        return false;
+      };
+     }
 
   ngOnInit() {
     this.cartService.getProducts()
@@ -72,7 +76,7 @@ export class NavbarComponent implements OnInit {
        brand: this.brand,
      },
      queryParamsHandling: 'merge',
-     skipLocationChange: false
+     skipLocationChange: false,
    });
   }
 }

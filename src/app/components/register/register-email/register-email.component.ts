@@ -37,7 +37,7 @@ export class RegisterEmailComponent implements OnInit {
     console.log(this.resetPasswordForm.value)
     this.rest.patchToken(this.url,this.token,this.resetPasswordForm.value).then(data => {
         this.resetPasswordForm.reset();
-        this.successMessage = "Reset password sucessfully.";
+        this.successMessage = "Register sucessfully.";
         setTimeout(() => {
           this.successMessage = '';
           this.router.navigate(['/login']);

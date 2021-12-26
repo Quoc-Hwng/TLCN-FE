@@ -6,6 +6,8 @@ import { CartService } from 'src/app/service/cart.service';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/service/product.service';
 import { ToastrService } from 'ngx-toastr';
+import { Review } from 'src/app/models/review';
+
 
 @Component({
   selector: 'app-detail',
@@ -22,7 +24,16 @@ export class DetailComponent implements OnInit {
   id: any;
   quantity=1;
   quantitys=1;
+  review: any;
+  page: number = 1;
+  totalLength: number;
+  IdUser: string = '';
+  comment: Review;
+  rate: number = 5;
+  UserReview: string = '';
   url='http://localhost:3000/api/v1/user/product'
+  url1='http://localhost:3000/api/v1/review'
+  url2='http://localhost:3000/api/v1/admin/product'
 
   addtocart(item: Product, quantity: number){
     if(quantity === null){
@@ -43,6 +54,7 @@ export class DetailComponent implements OnInit {
     private productService: ProductService,
     private toastr: ToastrService) {
       this.id = route.snapshot.params['id'];
+      this.comment = new Review;
     }
     search(keys: string){
       if (keys!==''){
@@ -60,28 +72,30 @@ export class DetailComponent implements OnInit {
       }
     }
   ngOnInit(){
+    document.documentElement.scrollTop = 0
     this.productService.getProById(this.id).subscribe((data:any) =>{
       this.Prod = data.product as Product;
       console.log(this.Prod);
     });
-    this.btnDisabled=true;
-    if(this.key==''){
-      this.rest.get(this.url).then(data=>{
-        this.product =( data as {product: Product[]}).product;
-        this.btnDisabled=false;
+    this.rest.getOne(this.url1,this.id).then((data:any) =>{
+      this.review = data.data as Review[];
+      this.totalLength = this.review!.length;
+      this.review.forEach((item:any)=>{
+        this.productService.getUserById(item.user.id).subscribe((user:any) =>{
+          item.user.displayName = user.user.displayName;
+        })
       })
-      .catch(error=>{
-        this.data.error(error['message']);
-      })
-    }else{
-      // this.rest.search(this.url,this.key).then(data=>{
-      //   this.product =( data as {product: Product[]}).product;
-      //   this.btnDisabled=false;
-      // })
-      // .catch(error=>{
-      //   this.data.error(error['message']);
-      // })
+  })
+  const id = localStorage.getItem('id')
+    if(id){
+      this.IdUser = id;
     }
-  }
-
+ }
+ createReview(){
+  this.comment!.rating = this.rate;
+   this.rest.post(this.url2 + '/' + this.id +'/reviews/' + this.IdUser,this.comment).then(data=>{
+     console.log(data);
+     window.location.reload();
+   })
+ }
 }

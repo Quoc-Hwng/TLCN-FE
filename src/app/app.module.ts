@@ -55,6 +55,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { RegisterEmailComponent } from './components/register/register-email/register-email.component';
 import { OrderTrackingComponent } from './components/order-tracking/order-tracking.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { VoucherComponent } from './main/information/voucher/voucher.component';
 
 
 @NgModule({
@@ -88,6 +89,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
     RegisterEmailComponent,
     OrderTrackingComponent,
     ModalDetailComponent,
+    VoucherComponent
   ],
   imports: [
     BrowserModule,

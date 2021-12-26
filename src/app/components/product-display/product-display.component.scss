@@ -300,6 +300,11 @@ $input-placeholder-color: #999999;
         transform: translateY(-15px);
     }
 }
-.modal-header{
-  width: 500px;
+.modal{
+  position: absolute;
+  left: -15% !important;
+  top: 0;
+}
+.example::-webkit-scrollbar {
+  display: none;
 }

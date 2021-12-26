@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
       console.log(email)
       this.rest.post(this.url,email).then(data => {
           this.RequestResetForm.reset();
-          this.successMessage = "Reset password link send to email sucessfully.";
+          this.successMessage = "Register link send to email sucessfully.";
           console.log(email);
           setTimeout(() => {
             this.successMessage = '';

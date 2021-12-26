@@ -15,4 +15,6 @@ export class Product{
   colour!: string;
   price!: number;
   priceSale!: number;
+  ratingsQuantity!: number;
+  ratingsAverage!: number;
 }
