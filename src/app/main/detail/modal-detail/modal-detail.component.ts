@@ -22,7 +22,7 @@ export class ModalDetailComponent implements OnInit {
   @Input() id: any;
   quantity=1;
   quantitys=1;
-  url='http://localhost:3000/api/v1/user/product'
+  url='https://shopgiay-be-tlcn.herokuapp.com/api/v1/user/product'
 
   public totalItems: number = 0;
   constructor(

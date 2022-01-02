@@ -9711,3 +9711,15 @@ a.text-dark:hover, a.text-dark:focus {
     transform: translateY(-15px);
   }
 }
+.line-clamp-2{
+  cursor: pointer;
+}
+.line-clamp-2:hover{
+  color: red;
+}
+.w-100{
+  cursor: pointer;
+}
+.time{
+  color:#17a2b8
+}

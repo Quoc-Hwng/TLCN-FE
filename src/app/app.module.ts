@@ -56,6 +56,8 @@ import { RegisterEmailComponent } from './components/register/register-email/reg
 import { OrderTrackingComponent } from './components/order-tracking/order-tracking.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { VoucherComponent } from './main/information/voucher/voucher.component';
+import { UpdateInforComponent } from './main/information/profile/update-infor/update-infor.component';
+import { ReadNewComponent } from './main/New/read-new/read-new.component';
 
 
 @NgModule({
@@ -89,7 +91,9 @@ import { VoucherComponent } from './main/information/voucher/voucher.component';
     RegisterEmailComponent,
     OrderTrackingComponent,
     ModalDetailComponent,
-    VoucherComponent
+    VoucherComponent,
+    UpdateInforComponent,
+    ReadNewComponent
   ],
   imports: [
     BrowserModule,

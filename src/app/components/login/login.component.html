@@ -7,6 +7,11 @@
       </div></a>
       <div class="login-wrapper my-auto">
         <h1 class="login-title">Log in</h1>
+        <div class="text-center w-100"  *ngIf="loading">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
         <form action="#!">
           <div class="form-group">
             <label for="email">Email</label>
@@ -30,7 +35,7 @@
               placeholder="enter your passsword"
             />
           </div>
-          <app-message></app-message>
+          <app-message *ngIf="!loading"></app-message>
           <input
             name="login"
             id="login"

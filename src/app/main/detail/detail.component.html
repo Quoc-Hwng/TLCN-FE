@@ -68,13 +68,15 @@
             </div>
             <input type="text" class="form-control bg-secondary border-0 text-center" [(ngModel)]="quantitys">
             <div class="input-group-btn">
-              <button class="btn btn-primary btn-plus" (click)="Load(quantitys+1)">
+              <button class="btn btn-primary btn-plus" [disabled]="quantity > Prod.amount" (click)="Load(quantitys+1)">
                 <i class="fa fa-plus"></i>
               </button>
             </div>
           </div>
-          <button class="btn btn-primary px-3" (click)="addtocart(Prod,quantity)"><i class="fa fa-shopping-cart mr-1"></i> Add To
+          <button *ngIf="Prod.amount > 0" class="btn btn-primary px-3" (click)="addtocart(Prod,quantity)"><i class="fa fa-shopping-cart mr-1"></i> Add To
             Cart</button>
+            <button *ngIf="Prod.amount < 1" class="btn btn-primary px-3" >
+              Out-of-stock product</button>
         </div>
       </div>
     </div>
@@ -95,31 +97,28 @@
           </div>
           <div class="tab-pane fade" id="tab-pane-2">
             <h4 class="mb-3">Additional Information</h4>
-            <p>Bước 1: Truy cập website và lựa chọn sản phẩm cần mua để mua hàng</p>
+            <p>Step 1: Access the website and select the products to buy</p>
 
-             <p>Bước 2: Click và sản phẩm muốn mua, màn hình hiển thị ra pop up với các lựa chọn sau</p>
+             <p>Step 2: Click on the products, it will display the pop-up with options as below:</p>
 
-              <p>Nếu bạn muốn tiếp tục mua hàng: Bấm vào phần tiếp tục mua hàng để lựa chọn thêm sản phẩm vào giỏ hàng
+              <p>If you want to purchase more items, click on “continue-to-buy” option to select
+                 and add them to your shopping cart. Moreover, you can check your cart to update the items
+                  by choosing “view cart” button. To place an order and pay for the products please click
+                   on the “order and pay” button.</p>
 
-              Nếu bạn muốn xem giỏ hàng để cập nhật sản phẩm: Bấm vào xem giỏ hàng
+              <p>Step 3: Choose account information</p>
 
-              Nếu bạn muốn đặt hàng và thanh toán cho sản phẩm này vui lòng bấm vào: Đặt hàng và thanh toán</p>
+              <p>If you are a registered customer, please sign in with your email address and password
+                 by clicking on “already registered” option. If you are not and want to sign up,
+                please fill in your personal information to continue your signing up process.
+                Once you have an account, you will easily check your orders. You can also place an order without registration
+                by clicking on “continue without registration”.</p>
 
-              <p>Bước 3: Lựa chọn thông tin tài khoản thanh toán</p>
+              <p>Step 4: Fill in your information to get the order, select your payment method and preferred shipping method.</p>
 
-              <p>Nếu bạn đã có tài khoản vui lòng nhập thông tin tên đăng nhập là email và mật khẩu vào mục đã có tài khoản trên hệ thống
+              <p>Step 5: Review your order information, type a short note and send the order.</p>
 
-                Nếu bạn chưa có tài khoản và muốn đăng ký tài khoản vui lòng điền các thông tin cá nhân để tiếp tục đăng ký tài khoản. Khi có tài khoản bạn sẽ dễ dàng theo dõi được đơn hàng của mình
-
-                Nếu bạn muốn mua hàng mà không cần tài khoản vui lòng nhấp chuột vào mục đặt hàng không cần tài khoản</p>
-
-              <p>Bước 4: Điền các thông tin của bạn để nhận đơn hàng, lựa chọn hình thức thanh toán và vận chuyển cho đơn hàng của mình</p>
-
-              <p>Bước 5: Xem lại thông tin đặt hàng, điền chú thích và gửi đơn hàng</p>
-
-              <p>Sau khi nhận được đơn hàng bạn gửi chúng tôi sẽ liên hệ bằng cách gọi điện lại để xác nhận lại đơn hàng và địa chỉ của bạn.
-
-              Trân trọng cảm ơn.</p>
+              <p>After receiving your order, we will contact you to confirm your order and address numbers. Thank you for purchasing our products.</p>
 
           </div>
           <div class="tab-pane fade" id="tab-pane-3">
@@ -127,11 +126,18 @@
               <div class="col-md-6">
                 <h4 class="mb-4">review </h4>
                 <div class="media mb-4" *ngFor="let r of review | paginate: { itemsPerPage: 6, currentPage: page, totalItems: totalLength }">
-                  <img src="assets/img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                  <img src="https://cdn4.iconfinder.com/data/icons/blank-people-avatars/256/9-512.png" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
                   <div class="media-body">
                     <h6>{{r.user.displayName}}<small> - <i>{{r.createdAt| date:'short'}}</i></small></h6>
                     <ngb-rating [max]="5" [(rate)]="r.rating" [readonly]="true"></ngb-rating>
                     <p>{{r.review}}</p>
+                  </div>
+                  <div *ngIf="r.adminReview" class="media-body">
+                    <img src="https://cdn4.iconfinder.com/data/icons/blank-people-avatars/256/9-512.png" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                    <div class="media-body">
+                    <h6>Admin<small> - <i>{{r.timeOrder| date:'short'}}</i></small></h6>
+                    <p>{{r.adminReview}}</p>
+                    </div>
                   </div>
                 </div>
                 <div *ngIf="totalLength!==0">
@@ -148,7 +154,7 @@
                 <form>
                   <div class="form-group">
                     <label for="message">Your Review *</label>
-                    <input id="message" styles="max-width:200px;height:60px" type="text"class="form-control" name="review" [(ngModel)]="comment.review">
+                    <input id="message" style="max-width:400px;height:100px" type="text"class="form-control" name="review" [(ngModel)]="comment.review">
                   </div>
                   <div class="form-group mb-0">
                     <input type="submit" (click)="createReview()" value="Leave Your Review" class="btn btn-primary px-3">

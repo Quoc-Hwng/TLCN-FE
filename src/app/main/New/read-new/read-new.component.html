@@ -1,0 +1,33 @@
+<app-topbar></app-topbar>
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="row px-xl-5">
+    <div class="col-12">
+      <nav class="breadcrumb bg-light mb-30">
+        <a class="breadcrumb-item text-dark" href="/">Home</a>
+        <a class="breadcrumb-item text-dark" href="/new">News</a>
+        <span class="breadcrumb-item active">News</span>
+      </nav>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row px-xl-5">
+    <div class="text-center w-100"  *ngIf="loading">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <div class="col-lg-9 col-md-8" *ngIf="!loading">
+      <h2>{{news.title}}</h2>
+      <div><img src="http://bizweb.dktcdn.net/100/424/874/themes/817899/assets/calendar.svg?1640923098696" width="15">
+         <span style = "margin-right:20px;"> {{news.starDay | date }}       </span>
+         <img src = "http://bizweb.dktcdn.net/100/424/874/themes/817899/assets/user.svg?1640923098696"width="15" >
+         <span> By Admin</span>
+      </div>
+      <div ng-bind-html="htmlFormat">
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

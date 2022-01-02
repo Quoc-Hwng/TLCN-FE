@@ -27,6 +27,9 @@ export class ProductDisplayComponent implements OnInit {
 finishAndAlert( message: any){
   this.ngOnInit();
 }
+rollTop(){
+  document.documentElement.scrollTop = 0
+}
 
 }
 

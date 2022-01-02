@@ -18,8 +18,8 @@ export class OrderHistoryComponent implements OnInit {
   oder:Order;
   carts!: Order[];
   btnDisabled= false;
-  url='http://localhost:3000/api/v1/cart/detail';
-  url1='http://localhost:3000/api/v1/cart/edit';
+  url='https://shopgiay-be-tlcn.herokuapp.com/api/v1/cart/detail';
+  url1='https://shopgiay-be-tlcn.herokuapp.com/api/v1/cart/edit';
   constructor(private rest:RestApiService,
     private data: DataService,private toastr: ToastrService,private productService: ProductService) {
       this.oder= new Order;

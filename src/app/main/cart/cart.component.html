@@ -47,18 +47,18 @@
                             </div>
                               <input type="number" class="form-control form-control-sm bg-secondary border-0 text-center" [(ngModel)]="item.quantity" name="quantity" ngDefaultControl (input) = "changeQuantity(item)">
                               <div class="input-group-btn">
-                                  <button class="btn btn-sm btn-primary btn-plus" (click)="addQuantity(item)">
+                                  <button class="btn btn-sm btn-primary btn-plus" [disabled]="item.quantity>item.product.amount" (click)="addQuantity(item)">
                                       <i class="fa fa-plus"></i>
                                   </button>
                               </div>
                           </div>
                       </td>
                       <td class="align-middle" [(ngModel)]="item.total" name="total" ngDefaultControl>{{item.total | number: '2.'}}</td>
-                      <td class="align-middle"><button class="btn btn-sm btn-danger" (click) = "removeItem(item)"><i class="fa fa-times"></i></button></td>
+                      <td class="align-middle"><button class="btn btn-sm btn-danger" (click)="confirmDeleteProduct(content,item)"><i class="fa fa-times"></i></button></td>
                   </tr>
                 </tbody>
               </table>
-              <button (click)="clearCart()">Clear</button>
+              <button class="btn btn-primary" routerLink="/homes">More Shopping</button>
           </div>
           <div class="col-lg-4">
               <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Cart Summary</span></h5>
@@ -82,16 +82,16 @@
   <div class="container">
     <div class = "center-cart-empty">
       <img src = "https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90">
-      <h4>Không có sản phẩm nào</h4>
-      <h6>Thêm sản phẩm vào giỏ hàng</h6>
-      <button class="btn btn-primary" routerLink="/homes">Thêm sản phẩm</button>
+      <h4>No product</h4>
+      <h6>Add products to cart</h6>
+      <button class="btn btn-primary" routerLink="/homes">Shopping</button>
     </div>
   </div>
 
 </ng-container>
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">Xóa Sản Phẩm</h4>
+    <h4 class="modal-title">Delete product in cart</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>

@@ -5,8 +5,8 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductService {
-  url = 'http://localhost:3000/api/v1/user/product';
-  url1= 'http://localhost:3000/api/v1/auth';
+  url = 'https://shopgiay-be-tlcn.herokuapp.com/api/v1/user/product';
+  url1= 'https://shopgiay-be-tlcn.herokuapp.com/api/v1/auth';
 
 constructor(private httpClient: HttpClient) {
 
@@ -21,7 +21,7 @@ getUserById(id: any){
   return  this.httpClient.get(this.url1+'/'+id);
 }
 getProduct(){
-  return this.httpClient.get<any>("http://localhost:3000/api/v1/user/product")
+  return this.httpClient.get<any>("https://shopgiay-be-tlcn.herokuapp.com/api/v1/user/product")
   .pipe(map((res:any)=>{
     return res;
   }))

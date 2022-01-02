@@ -12,7 +12,7 @@
   <div class="text-center py-4">
       <!-- <a class="h6 text-decoration-none text-truncate" routerLink="/detail/{{product.id}}">{{product.productName}}</a> -->
       <div>
-        <a style="width: 50px; color: black;" class="h6" routerLink="/detail/{{product.id}}">{{product.productName}}</a>
+        <a style="width: 50px; color: black;" class="h6" (click)="rollTop()" routerLink="/detail/{{product.id}}">{{product.productName}}</a>
       </div>
       <div class="d-flex align-items-center justify-content-center mt-2" *ngIf="product.price !== product.priceSale">
         <h5>{{product.priceSale  | number: '2.'}}</h5><h6 class="text-muted ml-2"><del>{{product.price  | number: '2.'}}</del></h6>

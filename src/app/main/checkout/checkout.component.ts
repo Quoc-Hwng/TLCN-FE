@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/models/product';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
+import { Discount } from 'src/app/models/discount';
 
 @Component({
   selector: 'app-checkout',
@@ -18,6 +19,7 @@ import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 export class CheckoutComponent implements OnInit {
 
   public items : any = [];
+  public itemss : any = [];
   public grandTotal !: number;
   public Total !: number;
   order: Order;
@@ -29,10 +31,12 @@ export class CheckoutComponent implements OnInit {
   orderPayPay: Order;
   public payPalConfig?: IPayPalConfig;
   exchangeD: any;
-  url = 'http://localhost:3000/api/v1/cart/add'
-  // url1 = 'http://localhost:3000/api/v1/cart/addPayPal'
-  url1 = 'http://localhost:3000/api/v1/cart/addPayPal'
-  url2 = 'http://localhost:3000/api/v1/admin/product';
+  discount: Discount[];
+  iDVC: string = '';
+  url = 'https://shopgiay-be-tlcn.herokuapp.com/api/v1/cart/add'
+  url1 = 'https://shopgiay-be-tlcn.herokuapp.com/api/v1/discount/voucher'
+  url2 = 'https://shopgiay-be-tlcn.herokuapp.com/api/v1/admin/product';
+  url3 = 'https://shopgiay-be-tlcn.herokuapp.com/api/v1/discount/edit'
   constructor(private cartService: CartService,
     private data: DataService,
     private rest: RestApiService,
@@ -57,7 +61,7 @@ export class CheckoutComponent implements OnInit {
       this.items = res;
       this.grandTotal = this.cartService.getTotalPrice();
       this.Total = this.cartService.getTotalPrice()+this.core;
-      console.log(this.grandTotal);
+      this.iDVC = '';
     })
     const exchangeUrl =
             'https://openexchangerates.org/api/latest.json?app_id=1660c56ea4cc47039bcd5513b6c43f1a';
@@ -65,7 +69,40 @@ export class CheckoutComponent implements OnInit {
                this.exchangeD = data.rates.VND;
             });
   }
+  Voucher(iDVoucher :any){
+    if(iDVoucher === "")
+    {this.ngOnInit()}
+    else{
+    this.itemss = this.items;
+    this.rest.getOne(this.url1,iDVoucher).then((data:any) => {
+      this.discount = data.discount as Discount[];
+      // if(this.discount[0].endDay.getTime() < Date.now.toString())
+      console.log(this.discount[0].endDay)
+      if(new Date().getTime() - new Date(this.discount[0].endDay).getTime() > 0 || this.discount[0].amount <= 0){
+        this.toastr.error('Voucher not exist');
+        this.ngOnInit();
+        return;
+      }
+      this.itemss[0].product.priceSale = this.items[0].product.priceSale - this.discount[0].discount;
+      this.itemss[0].total = this.items[0].total - this.discount[0].discount;
+      this.ngOnInit();
+      this.grandTotal = 0;
+      this.itemss.map((a:any)=>{
+        console.log(a);
+        this.grandTotal += a.total;
+      })
+      this.Total = this.grandTotal+this.core;
+      this.iDVC = iDVoucher;
+      this.toastr.success('Add voucher success');
+      console.log(this.items);
+    }).catch((err:any) => {
+      this.toastr.error('Voucher not exist')
+    })}
+  }
   checkOut(){
+    if(this.iDVC !== ""){
+      this.items = this.itemss;
+    }
     const id = localStorage.getItem('id')
     if(id){
       this.idUser=id;
@@ -92,20 +129,10 @@ export class CheckoutComponent implements OnInit {
       .then(data =>{
         this.checkout=false;
         this.data.success('Success');
-        this.order.products.forEach(product =>{
-          console.log(product.quantity);
-          this.rest.getOne(this.url2 +'/edit',product.product).then((data:any) =>{
-            console.log(data);
-            this.getProduct = data.product as Product;
-            this.getProduct.amount = (this.getProduct.amount - product.quantity);
-            console.log(this.getProduct.amount);
-            this.rest.put(this.url2 +'/edit' ,product.product,this.getProduct).then((data:any) =>{
-              console.log(data);
-            })
-          })
+        this.discount[0].amount -=1;
+        this.rest.put(this.url3,this.discount[0].id,this.discount[0]).then(data =>{
         })
         this.ngOnInit();
-        console.log(data);
       }).catch(error =>{
         this.checkout =false;
         this.data.error('Fail');
@@ -115,6 +142,9 @@ export class CheckoutComponent implements OnInit {
       this.router.navigate(['/homes'])
   }
   payPal(){
+    if(this.iDVC !== ""){
+      this.items = this.itemss;
+    }
     //	setLoading(true);
     const id = localStorage.getItem('id')
     if(id){
@@ -139,17 +169,6 @@ export class CheckoutComponent implements OnInit {
     console.log(this.grandTotal);
     this.orderPayPay = this.order;
     this.initConfig();
-    //     this.rest.post(this.url1,this.order).then((res:any) => {
-    //       console.log(res);
-    //     	window.location = res.forwardLink;
-
-    //     //	setLoading(false);
-    //     })
-    //     .catch((err) => {
-    //       console.log("faild", err);
-    //       this.toastr.error("faild");
-    // //			setLoading();
-    //     });
     }
     private initConfig(): void {
       this.orderPayPay.total = 0;
@@ -223,6 +242,9 @@ export class CheckoutComponent implements OnInit {
       };
   }
   checkOutPayPal(){
+    if(this.iDVC !== ""){
+      this.items = this.itemss;
+    }
     const id = localStorage.getItem('id')
     if(id){
       this.idUser=id;
@@ -248,20 +270,10 @@ export class CheckoutComponent implements OnInit {
       .then(data =>{
         this.checkout=false;
         this.data.success('Success');
-        this.order.products.forEach(product =>{
-          console.log(product.quantity);
-          this.rest.getOne(this.url2 +'/edit',product.product).then((data:any) =>{
-            console.log(data);
-            this.getProduct = data.product as Product;
-            this.getProduct.amount = (this.getProduct.amount - product.quantity);
-            console.log(this.getProduct.amount);
-            this.rest.put(this.url2 +'/edit' ,product.product,this.getProduct).then((data:any) =>{
-              console.log(data);
-            })
-          })
+        this.discount[0].amount -=1;
+        this.rest.put(this.url3,this.discount[0].id,this.discount[0]).then(data =>{
         })
         this.ngOnInit();
-        console.log(data);
       }).catch(error =>{
         this.checkout =false;
         this.data.error('Fail');

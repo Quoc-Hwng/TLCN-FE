@@ -8,7 +8,11 @@
       <div class="login-wrapper my-auto">
         <h1 class="login-title">Register</h1>
         <div>
-
+          <div class="text-center w-100"  *ngIf="loading">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
           <form action="" [formGroup]="RequestResetForm" (ngSubmit)="RequestResetUser(RequestResetForm)">
             <div class="form-group">
               <label for="email">Email</label>
@@ -23,10 +27,10 @@
               </div>
             </div>
           </form>
-          <div id="errorMsg" *ngIf="errorMessage">
+          <div id="errorMsg" *ngIf="errorMessage && !loading">
             <span style="color: red;">{{errorMessage}}</span>
           </div>
-          <div id="successMsg" *ngIf="successMessage">
+          <div id="successMsg" *ngIf="successMessage !loading">
             <span style="color: aqua;">{{successMessage}}</span>
           </div>
           <p class="row">Do u have an account?

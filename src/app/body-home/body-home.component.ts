@@ -15,7 +15,7 @@ export class BodyHomeComponent implements OnInit {
   products!: Product[];
   btnDisabled= false;
 
-  url='http://localhost:3000/api/v1/user/product';
+  url='https://shopgiay-be-tlcn.herokuapp.com/api/v1/user/product';
   constructor(private rest:RestApiService,
     private data: DataService) { }
 

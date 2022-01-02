@@ -1,0 +1,68 @@
+<div id="productEdit">
+    <ng-template #content let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Profile</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="doing" class="m-auto">
+          <h1 class="text-center display-3 mt-5">
+            <i class="fas fa-spinner fa spin"></i> </h1>
+            <div *ngIf="!doing"></div>
+        </div>
+        <div class=" wrapper">
+          <div class="card card-4">
+            <div class="card-body">
+              <h2 class="title">Cập nhật thông tin</h2>
+              <form method="POST">
+                  <div class="col-2">
+                    <div class="input-group">
+                      <label class="label">Your Name</label>
+                      <div class="input-group-icon">
+                        <input class="input--style-4" type="text" name="display_name" [(ngModel)]="employee.displayName">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <div class="input-group">
+                      <label class="label">Email</label>
+                      <div class="input-group-icon">
+                        <input class="input--style-4" type="email" name="email" [(ngModel)]="employee.email">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <div class="input-group">
+                      <label class="label">Phone</label>
+                      <div class="input-group-icon">
+                        <input class="input--style-4" type="text" name="phone" [(ngModel)]="employee.phone">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <div class="input-group">
+                      <label class="label">Address</label>
+                      <div class="input-group-icon">
+                        <input class="input--style-4" type="text" name="address" [(ngModel)]="employee.address">
+                      </div>
+                    </div>
+                  </div>
+                <div class="p-t-15">
+                  <!-- <button class="btn btn--radius-2 btn--blue" (click)="update()">Cập nhật</button> -->
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary pull-right" (click)="update()">Update</button>
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+      </div>
+    </ng-template>
+    <button  rel="tooltip" title="Edit Task"
+    class="btn btn-sm btn-outline-primary " (click)="open(content)">
+    <i class="fas fa-edit"></i></button>
+</div>

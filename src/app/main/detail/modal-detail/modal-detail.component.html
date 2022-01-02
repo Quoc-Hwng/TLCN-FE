@@ -61,7 +61,7 @@
             </div>
             <input type="text" class="form-control bg-secondary border-0 text-center" [(ngModel)]="quantitys">
             <div class="input-group-btn">
-              <button class="btn btn-primary btn-plus" (click)="Load(quantitys+1)">
+              <button class="btn btn-primary btn-plus" [disabled]="quantity > Prod.amount" (click)="Load(quantitys+1)">
                 <i class="fa fa-plus"></i>
               </button>
             </div>

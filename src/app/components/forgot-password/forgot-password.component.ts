@@ -10,12 +10,13 @@ import { RestApiService } from 'src/app/service/rest-api.service';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  url='http://localhost:3000/api/v1/auth/forgotPassword';
+  url='https://shopgiay-be-tlcn.herokuapp.com/api/v1/auth/forgotPassword';
   RequestResetForm: FormGroup;
   forbiddenEmails: any;
   errorMessage: string = '';
   successMessage: string;
   IsvalidForm = true;
+  loading:  boolean = false;
 
   constructor(
     private rest: RestApiService,
@@ -29,16 +30,15 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   RequestResetUser(form:any) {
-    console.log(form)
-    console.log(form.value.email);
+    this.loading = true;
     var email = form.value;
     if (form) {
       this.IsvalidForm = true;
       console.log(email)
       this.rest.post(this.url,email).then(data => {
           this.RequestResetForm.reset();
+          this.loading =  false;
           this.successMessage = "Reset password link send to email sucessfully.";
-          console.log(email);
           setTimeout(() => {
             this.successMessage = '';
             this.router.navigate(['/login']);
@@ -46,6 +46,7 @@ export class ForgotPasswordComponent implements OnInit {
         },
       ).catch(error=>{
         if (error) {
+          this.loading = false;
           this.errorMessage = "Email incorrect";
           this.ngOnInit();
         }

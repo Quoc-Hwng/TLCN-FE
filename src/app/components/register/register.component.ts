@@ -14,12 +14,13 @@ export class RegisterComponent implements OnInit {
 
   employee: Employee;
   saving= false;
-  url='http://localhost:3000/api/v1/auth/user/registers'
+  url='https://shopgiay-be-tlcn.herokuapp.com/api/v1/auth/user/registers'
   RequestResetForm: FormGroup;
   forbiddenEmails: any;
   errorMessage: string;
   successMessage: string;
   IsvalidForm = true;
+  loading:  boolean = false;
 
   constructor(
     private rest: RestApiService,
@@ -36,14 +37,14 @@ export class RegisterComponent implements OnInit {
 
 
   RequestResetUser(form:any) {
-    console.log(form)
-    console.log(form.value.email);
+    this.loading = true;
     var email = form.value;
     if (form) {
       this.IsvalidForm = true;
       console.log(email)
       this.rest.post(this.url,email).then(data => {
           this.RequestResetForm.reset();
+          this.loading = false;
           this.successMessage = "Register link send to email sucessfully.";
           console.log(email);
           setTimeout(() => {
@@ -54,6 +55,7 @@ export class RegisterComponent implements OnInit {
         err => {
 
           if (err.error.message) {
+            this.loading = false;
             this.errorMessage = err.error.message;
           }
         }

@@ -12,7 +12,8 @@ export class NewComponent implements OnInit {
 
   news!: News[];
   btnDisabled= false;
-  url='http://localhost:3000/api/v1/admin/new/list'
+  loading: boolean = true;
+  url='https://shopgiay-be-tlcn.herokuapp.com/api/v1/admin/new/list'
   deleteId!:string;
   confirmMessage='';
   constructor(private rest:RestApiService,
@@ -23,6 +24,8 @@ export class NewComponent implements OnInit {
     this.btnDisabled=true;
     this.rest.get(this.url).then(data=>{
         this.news =( data as {news: News[]}).news;
+        console.log(data);
+        this.loading = false;
         this.btnDisabled=false;
       })
       .catch(error=>{

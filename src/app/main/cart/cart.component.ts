@@ -61,6 +61,8 @@ export class CartComponent implements OnInit {
     {
       item.quantity = 1;
       return;
+    }else if(item.quantity === 0){
+      this.removeItem(item);
     }
     this.cartService.addtoCart(item.product,item.quantity);
     console.log()
@@ -72,7 +74,7 @@ export class CartComponent implements OnInit {
   confirmDeleteProduct(content:  TemplateRef<any>,item:any){
     this.modalService.open(content,{ariaDescribedBy: 'modal-basic-title'});
     this.deleteProduct = item;
-    this.confirmMessage = `Xóa sản phẩm khỏi giỏ hàng` ;
+    this.confirmMessage = `Remove product from carts` ;
   }
 
 }

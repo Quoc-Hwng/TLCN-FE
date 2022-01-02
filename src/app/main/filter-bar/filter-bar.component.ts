@@ -26,11 +26,10 @@ export class FilterBarComponent implements OnInit {
   brand: string;
   sort: string;
   loading: boolean = true;
-  isColorChecked = false;
   rangeValues: number[] = [100000,40000000];
   message ='';
 
-  url='http://localhost:3000/api/v1/user/product';
+  url='https://shopgiay-be-tlcn.herokuapp.com/api/v1/user/product';
 
   public totalItems: number = 0;
   constructor(
@@ -38,6 +37,10 @@ export class FilterBarComponent implements OnInit {
     private data: DataService,
     private route: ActivatedRoute,
     private _router: Router){
+    }
+    scrollTop(){
+      this.loading = false;
+      document.documentElement.scrollTop = 0;
     }
     navigateToPrice(){
       this.loading = true;
@@ -86,7 +89,6 @@ export class FilterBarComponent implements OnInit {
        relativeTo: this.route,
        queryParams: {
          sort: sort,
-
        },
        queryParamsHandling: 'merge',
        skipLocationChange: false
@@ -94,8 +96,7 @@ export class FilterBarComponent implements OnInit {
     }
   ngOnInit(){
     this.route.queryParams
-    .subscribe(params => {
-      console.log(params); // { orderby: "price" }
+    .subscribe(params => { // { orderby: "price" }
       this.status = params.status;
       this.gender = params.gender;
       this.selling = params.selling;
@@ -105,7 +106,8 @@ export class FilterBarComponent implements OnInit {
       this.size = params.size;
       this.brand = params.brand;
       this.sort = params.sort;
-      console.log(this.status);
+      if(this.status || this.gender || this.selling || this.brand){this.loading = true;}
+      if(!this.status && !this.gender && !this.selling && !this.brand){this.loading = true;}
       this.rest.search(this.url,{status:this.status,gender:this.gender,
                                   color:this.color,selling:this.selling,
                                   price1:this.price1,price2:this.price2,

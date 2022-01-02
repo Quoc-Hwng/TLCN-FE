@@ -14,7 +14,8 @@ export class LoginComponent implements OnInit {
 
   employee: Employee;
   btnDisabled= false;
-  url='http://localhost:3000/api/v1/auth/login'
+  loading:  boolean = false;
+  url='https://shopgiay-be-tlcn.herokuapp.com/api/v1/auth/login'
   constructor(private rest:RestApiService,
     private data: DataService,
     private router: Router,
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
     return true;
   }
   async login(){
+    this.loading = true;
     this.btnDisabled=true;
     if(this.validate()){
       this.rest.post(this.url,this.employee).then(async(data:any)=>{
@@ -40,6 +42,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('name',value.name);
         localStorage.setItem('id',value.id);
         var item = localStorage.getItem('tokens');
+        this.loading = false;
         this.toastr.success('Login success');
   //      await this.data.getProfile();
         console.log('user', item);
@@ -50,6 +53,7 @@ export class LoginComponent implements OnInit {
       .catch(error=>{
         this.data.error('Incorrect email or password');
         this.btnDisabled=false;
+        this.loading = false;
       })
     }
   }

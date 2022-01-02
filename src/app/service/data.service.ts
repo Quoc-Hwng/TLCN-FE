@@ -31,7 +31,7 @@ export class DataService {
       if (localStorage.getItem('tokens')){
        var token = localStorage.getItem('tokens');
        var id = this.getDecodedAccessToken(token!);
-       this.productService.getUserById(id.id).subscribe((data:any) =>{
+       this.productService.getUserById(id.sub).subscribe((data:any) =>{
         this.employee = data.user as Employee;
         console.log(this.employee);
       });

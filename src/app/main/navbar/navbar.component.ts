@@ -19,15 +19,15 @@ export class NavbarComponent implements OnInit {
   totalItem: number = 0;
   brands!: Brand[];
   public brand : string = '';
-  url='http://localhost:3000/api/v1/admin/brand/list'
+  url='https://shopgiay-be-tlcn.herokuapp.com/api/v1/admin/brand/list'
 
   constructor(private route: ActivatedRoute,
     private _router: Router,
     private cartService: CartService,
     private rest:RestApiService) {
-      this._router.routeReuseStrategy.shouldReuseRoute = () => {
-        return false;
-      };
+      // this._router.routeReuseStrategy.shouldReuseRoute = () => {
+      //   return false;
+      // };
      }
 
   ngOnInit() {

@@ -12,12 +12,13 @@ import { RestApiService } from 'src/app/service/rest-api.service';
 })
 export class RegisterEmailComponent implements OnInit {
 
-  url='http://localhost:3000/api/v1/auth/user/registerMail';
+  url='https://shopgiay-be-tlcn.herokuapp.com/api/v1/auth/user/registerMail';
   resetPasswordForm: FormGroup;
   password: FormControl;
   successMessage: string;
   errorMessage: string;
   token: string;
+  loading: boolean  = false;
   constructor(private fb: FormBuilder,
     private rest: RestApiService,
     private dataService: DataService,
@@ -32,12 +33,13 @@ export class RegisterEmailComponent implements OnInit {
     });
   }
   changePassword(data: any) { // change any to what this post request will return
-    console.log(data);
+    this.loading  = true;
   if (data) {
     console.log(this.resetPasswordForm.value)
     this.rest.patchToken(this.url,this.token,this.resetPasswordForm.value).then(data => {
         this.resetPasswordForm.reset();
         this.successMessage = "Register sucessfully.";
+        this.loading = false;
         setTimeout(() => {
           this.successMessage = '';
           this.router.navigate(['/login']);
@@ -47,6 +49,7 @@ export class RegisterEmailComponent implements OnInit {
       err => {
 
         if (err.error.message) {
+          this.loading =  false;
           this.errorMessage = err.error.message;
           console.log(this.errorMessage);
         }

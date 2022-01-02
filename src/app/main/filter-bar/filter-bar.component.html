@@ -133,6 +133,6 @@
           </div>
         </div>
         <div>
-        <pagination-controls class="text-center"  (pageChange)="page = $event"></pagination-controls>
+        <pagination-controls class="text-center" (click)="scrollTop()" (pageChange)="page = $event"></pagination-controls>
         </div>
       </div>

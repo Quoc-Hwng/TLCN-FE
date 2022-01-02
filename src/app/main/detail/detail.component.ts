@@ -31,9 +31,10 @@ export class DetailComponent implements OnInit {
   comment: Review;
   rate: number = 5;
   UserReview: string = '';
-  url='http://localhost:3000/api/v1/user/product'
-  url1='http://localhost:3000/api/v1/review'
-  url2='http://localhost:3000/api/v1/admin/product'
+  loading: boolean = true;
+  url='https://shopgiay-be-tlcn.herokuapp.com/api/v1/user/product'
+  url1='https://shopgiay-be-tlcn.herokuapp.com/api/v1/review'
+  url2='https://shopgiay-be-tlcn.herokuapp.com/api/v1/admin/product'
 
   addtocart(item: Product, quantity: number){
     if(quantity === null){
@@ -56,15 +57,8 @@ export class DetailComponent implements OnInit {
       this.id = route.snapshot.params['id'];
       this.comment = new Review;
     }
-    search(keys: string){
-      if (keys!==''){
-        this.key=keys;
-        this.ngOnInit();
-    }
-    }
     Pro: any = [];
     Load(quantitys: number) {
-      console.log(quantitys)
       if (quantitys > 0) {
         this.quantity = quantitys;
         this.quantitys = quantitys;
@@ -72,9 +66,9 @@ export class DetailComponent implements OnInit {
       }
     }
   ngOnInit(){
-    document.documentElement.scrollTop = 0
     this.productService.getProById(this.id).subscribe((data:any) =>{
       this.Prod = data.product as Product;
+      this.loading = false;
       console.log(this.Prod);
     });
     this.rest.getOne(this.url1,this.id).then((data:any) =>{
@@ -85,6 +79,7 @@ export class DetailComponent implements OnInit {
           item.user.displayName = user.user.displayName;
         })
       })
+      console.log(this.review);
   })
   const id = localStorage.getItem('id')
     if(id){
@@ -95,7 +90,6 @@ export class DetailComponent implements OnInit {
   this.comment!.rating = this.rate;
    this.rest.post(this.url2 + '/' + this.id +'/reviews/' + this.IdUser,this.comment).then(data=>{
      console.log(data);
-     window.location.reload();
    })
  }
 }

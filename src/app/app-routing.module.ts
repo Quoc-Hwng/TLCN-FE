@@ -20,6 +20,7 @@ import { AboutComponent } from './main/about/about.component';
 import { RegisterEmailComponent } from './components/register/register-email/register-email.component';
 import { OrderTrackingComponent } from './components/order-tracking/order-tracking.component';
 import { VoucherComponent } from './main/information/voucher/voucher.component';
+import { ReadNewComponent } from './main/New/read-new/read-new.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'resetPassword/:token', component: ResetPasswordComponent },
   { path: 'tracking', component: OrderTrackingComponent},
+  { path: 'news/:id', component: ReadNewComponent },
   { path: '**', component: PageNotFoundComponent },
 
 

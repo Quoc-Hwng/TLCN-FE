@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,TemplateRef } from '@angular/core';
 import { ProductService } from 'src/app/service/product.service';
 import { RestApiService } from 'src/app/service/rest-api.service';
 import { Order } from 'src/app/models/order';
 import { DataService } from 'src/app/service/data.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-order-tracking',
@@ -15,11 +16,12 @@ export class OrderTrackingComponent implements OnInit {
   order: Order;
   Id = '';
   messageError = '';
-  url1='http://localhost:3000/api/v1/cart';
+  url1='https://shopgiay-be-tlcn.herokuapp.com/api/v1/cart';
   constructor(
     private rest : RestApiService,
     private productService: ProductService,
     private data: DataService,
+    private modalService: NgbModal,
   ) { }
 
   ngOnInit() {
@@ -53,6 +55,9 @@ export class OrderTrackingComponent implements OnInit {
     this.ngOnInit();
     this.messageError='';
     }
+  }
+  cancelOrder(content:  TemplateRef<any>){
+    this.modalService.open(content,{ariaDescribedBy: 'modal-basic-title'});
   }
   update(){
     this.doing=true;

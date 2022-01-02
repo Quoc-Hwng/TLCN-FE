@@ -4,5 +4,6 @@ export class Review{
   createdAt: Date;
   product: string;
   user:string;
-
+  adminReview!: string;
+  timeOrder:Date;
 }

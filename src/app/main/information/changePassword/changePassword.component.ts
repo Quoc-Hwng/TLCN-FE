@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./changePassword.component.css']
 })
 export class ChangePasswordComponent implements OnInit {
-  url='http://localhost:3000/api/v1/auth/user/updateMyPassword';
+  url='https://shopgiay-be-tlcn.herokuapp.com/api/v1/auth/user/updateMyPassword';
   updatePasswordForm: FormGroup;
   passwordCurrent: FormControl;
   password: FormControl;

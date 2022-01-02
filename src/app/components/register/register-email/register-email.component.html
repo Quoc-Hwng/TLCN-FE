@@ -6,6 +6,11 @@
       </div>
       <div class="login-wrapper my-auto">
         <h1 class="login-title">Register</h1>
+        <div class="text-center w-100"  *ngIf="loading">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
         <form class="passform" [formGroup]="resetPasswordForm" (submit)="changePassword(resetPasswordForm)">
           <div class="form-group">
             <label for="email">Full Name</label>
@@ -14,6 +19,12 @@
           <div class="form-group">
             <label for="email"> PassWord</label>
             <input type="password" class="form-control border-light" id="newpassword" formControlName="password" placeholder="Nhập mật khẩu">
+          </div>
+          <div id="errorMsg" *ngIf="errorMessage && !loading">
+            <span style="color: red;">{{errorMessage}}</span>
+          </div>
+          <div id="successMsg" *ngIf="successMessage !loading">
+            <span style="color: aqua;">{{successMessage}}</span>
           </div>
           <input
             name="login"
