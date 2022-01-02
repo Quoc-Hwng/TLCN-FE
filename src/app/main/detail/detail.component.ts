@@ -19,8 +19,6 @@ export class DetailComponent implements OnInit {
   product!: Product[];
   Prod: Product;
   products!: Product[];
-  btnDisabled= false;
-  key='';
   id: any;
   quantity=1;
   quantitys=1;
@@ -32,6 +30,7 @@ export class DetailComponent implements OnInit {
   rate: number = 5;
   UserReview: string = '';
   loading: boolean = true;
+  brandL: any;
   url='https://shopgiay-be-tlcn.herokuapp.com/api/v1/user/product'
   url1='https://shopgiay-be-tlcn.herokuapp.com/api/v1/review'
   url2='https://shopgiay-be-tlcn.herokuapp.com/api/v1/admin/product'
@@ -69,7 +68,10 @@ export class DetailComponent implements OnInit {
     this.productService.getProById(this.id).subscribe((data:any) =>{
       this.Prod = data.product as Product;
       this.loading = false;
-      console.log(this.Prod);
+      // this.rest.search(this.url,{brand:this.Prod.brand}).then((data:any)=>{
+      //   this.products =data.data.data as Product[];
+      //   this.brandL = this.products!.length;
+      // })
     });
     this.rest.getOne(this.url1,this.id).then((data:any) =>{
       this.review = data.data as Review[];
@@ -79,12 +81,12 @@ export class DetailComponent implements OnInit {
           item.user.displayName = user.user.displayName;
         })
       })
-      console.log(this.review);
-  })
+  });
   const id = localStorage.getItem('id')
     if(id){
       this.IdUser = id;
     }
+
  }
  createReview(){
   this.comment!.rating = this.rate;

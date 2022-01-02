@@ -22,6 +22,7 @@ export class ModalDetailComponent implements OnInit {
   @Input() id: any;
   quantity=1;
   quantitys=1;
+  loading: boolean= true;
   url='https://shopgiay-be-tlcn.herokuapp.com/api/v1/user/product'
 
   public totalItems: number = 0;
@@ -55,6 +56,7 @@ export class ModalDetailComponent implements OnInit {
   ngOnInit(){
     this.productService.getProById(this.id).subscribe((data:any) =>{
       this.Prod = data.product as Product;
+      this.loading = false;
       console.log(this.Prod);
     });
     this.btnDisabled=true;
