@@ -162,6 +162,10 @@
                       <h6 class="font-weight-medium">Shipping</h6>
                       <h6 class="font-weight-medium">{{core| number: '2.'}} Vnđ</h6>
                   </div>
+                  <div class="d-flex justify-content-between" *ngIf="DC > 0">
+                    <h6 class="font-weight-medium">Discount</h6>
+                    <h6 class="font-weight-medium">{{DC| number: '2.'}} Vnđ</h6>
+                </div>
               </div>
               <div class="row voucherInput" style="width:384px">
                 <input class="" style="width:268px" type="text" placeholder="Voucher" name="voucher" #iDVoucher>

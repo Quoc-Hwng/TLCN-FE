@@ -32,6 +32,7 @@ export class CheckoutComponent implements OnInit {
   public payPalConfig?: IPayPalConfig;
   exchangeD: any;
   discount: Discount[];
+  DC: number = 0;
   iDVC: string = '';
   url = 'https://shopgiay-be-tlcn.herokuapp.com/api/v1/cart/add'
   url1 = 'https://shopgiay-be-tlcn.herokuapp.com/api/v1/discount/voucher'
@@ -71,18 +72,20 @@ export class CheckoutComponent implements OnInit {
   }
   Voucher(iDVoucher :any){
     if(iDVoucher === "")
-    {this.ngOnInit()}
+    {this.ngOnInit()
+      this.DC = 0;
+    }
     else{
     this.itemss = this.items;
     this.rest.getOne(this.url1,iDVoucher).then((data:any) => {
       this.discount = data.discount as Discount[];
-      // if(this.discount[0].endDay.getTime() < Date.now.toString())
-      console.log(this.discount[0].endDay)
       if(new Date().getTime() - new Date(this.discount[0].endDay).getTime() > 0 || this.discount[0].amount <= 0){
         this.toastr.error('Voucher not exist');
+        this.DC = 0;
         this.ngOnInit();
         return;
       }
+      this.DC = this.discount[0].discount;
       this.itemss[0].product.priceSale = this.items[0].product.priceSale - this.discount[0].discount;
       this.itemss[0].total = this.items[0].total - this.discount[0].discount;
       this.ngOnInit();
@@ -97,6 +100,8 @@ export class CheckoutComponent implements OnInit {
       console.log(this.items);
     }).catch((err:any) => {
       this.toastr.error('Voucher not exist')
+      this.ngOnInit();
+      this.DC = 0;
     })}
   }
   checkOut(){
