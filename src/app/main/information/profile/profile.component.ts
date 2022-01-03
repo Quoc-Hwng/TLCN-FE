@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ProfileComponent implements OnInit {
   doing=false;
+  loading: boolean = true;
   url='https://shopgiay-be-tlcn.herokuapp.com/api/v1/users/detail'
   employee: Employee;
    constructor(
@@ -27,9 +28,10 @@ export class ProfileComponent implements OnInit {
         this.doing=false;
         console.log(data);
         this.employee =(data as {employee: Employee}).employee;
+        this.loading = false;
       }).catch(error =>{
         this.doing =false;
-        this.data.error(error['lỗi'])
+        this.data.error(error['Fail'])
       });
     }
   }

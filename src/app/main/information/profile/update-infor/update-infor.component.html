@@ -49,6 +49,22 @@
                       </div>
                     </div>
                   </div>
+                  <div class="col-2">
+                    <div class="input-group">
+                      <label class="label">City</label>
+                      <div class="input-group-icon">
+                        <input class="input--style-4" type="text" name="city" [(ngModel)]="employee.city">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <div class="input-group">
+                      <label class="label">Country</label>
+                      <div class="input-group-icon">
+                        <input class="input--style-4" type="text" name="countrycountry" [(ngModel)]="employee.country">
+                      </div>
+                    </div>
+                  </div>
                 <div class="p-t-15">
                   <!-- <button class="btn btn--radius-2 btn--blue" (click)="update()">Cập nhật</button> -->
                 </div>
@@ -58,8 +74,8 @@
         </div>
        </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary pull-right" (click)="update()">Update</button>
-        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+        <button  class="btn btn-primary pull-right" (click)="update()">Update</button>
+        <button type="submit" class="btn btn-secondary" (click)="c('Close click')">Close</button>
       </div>
     </ng-template>
     <button  rel="tooltip" title="Edit Task"

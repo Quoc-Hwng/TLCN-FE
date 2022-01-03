@@ -19,7 +19,6 @@ import { ResetPasswordComponent } from './components/forgot-password/reset-passw
 import { AboutComponent } from './main/about/about.component';
 import { RegisterEmailComponent } from './components/register/register-email/register-email.component';
 import { OrderTrackingComponent } from './components/order-tracking/order-tracking.component';
-import { VoucherComponent } from './main/information/voucher/voucher.component';
 import { ReadNewComponent } from './main/New/read-new/read-new.component';
 
 
@@ -39,7 +38,6 @@ const routes: Routes = [
     { path: 'profile', component: ProfileComponent},
     { path: 'changPassword', component: ChangePasswordComponent},
     { path: 'history', component: OrderHistoryComponent},
-    { path: 'voucher', component: VoucherComponent},
   ]},
   { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'resetPassword/:token', component: ResetPasswordComponent },

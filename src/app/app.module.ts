@@ -55,7 +55,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { RegisterEmailComponent } from './components/register/register-email/register-email.component';
 import { OrderTrackingComponent } from './components/order-tracking/order-tracking.component';
 import { NgxPayPalModule } from 'ngx-paypal';
-import { VoucherComponent } from './main/information/voucher/voucher.component';
 import { UpdateInforComponent } from './main/information/profile/update-infor/update-infor.component';
 import { ReadNewComponent } from './main/New/read-new/read-new.component';
 
@@ -91,7 +90,6 @@ import { ReadNewComponent } from './main/New/read-new/read-new.component';
     RegisterEmailComponent,
     OrderTrackingComponent,
     ModalDetailComponent,
-    VoucherComponent,
     UpdateInforComponent,
     ReadNewComponent
   ],

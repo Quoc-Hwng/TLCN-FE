@@ -18,6 +18,7 @@ export class OrderHistoryComponent implements OnInit {
   oder:Order;
   carts!: Order[];
   btnDisabled= false;
+  loading : boolean = true;
   url='https://shopgiay-be-tlcn.herokuapp.com/api/v1/cart/detail';
   url1='https://shopgiay-be-tlcn.herokuapp.com/api/v1/cart/edit';
   constructor(private rest:RestApiService,
@@ -39,6 +40,7 @@ export class OrderHistoryComponent implements OnInit {
             this.productService.getProById(item.product).subscribe((data:any)=>{
               item.productImg = data.product.productImg1;
               item.productName = data.product.productName;
+              this.loading = false;
             })
           })
         })

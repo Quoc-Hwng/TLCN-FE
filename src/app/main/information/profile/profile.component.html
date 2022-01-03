@@ -11,14 +11,30 @@
                 <p class="card-category"></p>
               </div>
               <div class="card-body">
-                <div class="table-responsive">
+                <div class="table-responsive text-center">
+                  <div class="text-center w-100" style="display: flex;justify-content: center"  *ngIf="loading">
+                    <div class="spinner-border" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
                   <div>
                     <h5>Email</h5>
                     <div>{{employee?.email}}</div>
                   </div>
-                  <div *ngIf = "editId !== null">
+                  <div>
+                    <h5>Name</h5>
+                    <div>{{employee?.displayName}}</div>
+                  </div>
+                  <div *ngIf="employee?.phone !== null">
+                    <h5>Phone</h5>
+                    <div>{{employee?.phone}}</div>
+                  </div>
+                  <div *ngIf="employee?.address !== null">
+                    <h5>Address</h5>
+                    <div>{{employee?.address}}</div>
+                  </div>
+                  <div *ngIf="editId!==null">
                     <app-update-infor [editId]="editId" (updateFinished)="finishAndAlert($event)">
-
                     </app-update-infor>
                   </div>
                 </div>

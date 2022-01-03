@@ -11,7 +11,7 @@
                 <p class="card-category"></p>
               </div>
               <div class="card-body">
-                <div class="table-responsive">
+                <div class="table-responsive " >
                   <table class="table">
                     <thead class="text-primary">
                       <th>No</th>
@@ -21,7 +21,12 @@
                       <th>State</th>
                       <th></th>
                     </thead>
-                    <tbody>
+                    <div class="text-center w-100" style="display: flex;justify-content: center"  *ngIf="loading">
+                      <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                    </div>
+                    <tbody *ngIf="!loading">
                       <tr *ngFor="let item of carts | paginate: { itemsPerPage: limit, currentPage: page, totalItems: totalLength }, let i = index ">
                         <td>{{i+1}}</td>
                         <td><div *ngFor="let pro of item.products">{{pro.productName}}, SL: {{pro.quantity}}</div></td>
