@@ -92,7 +92,7 @@ export class DetailComponent implements OnInit {
   this.comment!.rating = this.rate;
   console.log(this.comment)
    this.rest.post(this.url2 + '/' + this.id +'/reviews/' + this.IdUser,this.comment).then(data=>{
-     console.log(data);
+     window.location.reload();
    })
  }
 }
